@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafi's cookbook</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="mainbody">
+    <nav>
+        <a href="./"><h1>Rafi's cookbook</h1></a>
+        <form method="get">
+
+            <div class="dropdown">
+                <label><input type="checkbox">Useful info<span class="material">arrow_forward_ios</span></label>
+                <div>
+                    <button type="submit" name="recipe" value="">Measurement units</button>
+                    <button type="submit" name="recipe" value="">Commas are important</button>
+                    <button type="submit" name="recipe" value="">The Rafi Difficulty Scale</button>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <label><input type="checkbox">Non-alcoholic drinks<span class="material">arrow_forward_ios</span></label>
+                <div>
+                    <button type="submit" name="recipe" value="">Hot chocolate</button>
+                    <button type="submit" name="recipe" value="">Cold tea</button>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <label><input type="checkbox">Sweets<span class="material">arrow_forward_ios</span></label>
+                <div>
+                    <button type="submit" name="recipe" value="bolo_marmore_de_banana_e_chocolate">Banana and chocolate marble cake</button>
+                    <button type="submit" name="recipe" value="">Coconut cake</button>
+                    <button type="submit" name="recipe" value="">Brownies</button>
+                </div>
+            </div>
+
+        </form>
+    </nav>
+
+    <iframe src="main.html" frameborder="0" id="frame"></iframe>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get('recipe');
+        if (myParam != null) document.getElementById('frame').src = `recipes/${myParam}.html`;
+    </script>
+</body>
+
+</html>

@@ -176,10 +176,10 @@ nav > form > *:not(:last-child) {
 
 .ingredients > label {
     width: fit-content;
+    margin-bottom: 10px;
 }
 
 .ingredients > label > input {
-    margin-bottom: 10px;
     margin-right: 10px;
 }
 

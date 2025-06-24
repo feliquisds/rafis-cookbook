@@ -1,0 +1,22 @@
+{
+    "data": [
+        [
+            "useful_info",
+            "Useful info",
+            [
+                [
+                    "Measurement units",
+                    "useful_info/measurement_units.html"
+                ],
+                [
+                    "Commas are important",
+                    "useful_info/commas_are_important.html"
+                ],
+                [
+                    "The Rafi Difficulty Scale",
+                    "useful_info/the_rafi_difficulty_scale.html"
+                ]
+            ]
+        ]
+    ]
+}

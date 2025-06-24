@@ -45,6 +45,32 @@
     <iframe src="main.html" frameborder="0" id="frame"></iframe>
 
     <script>
+        function loadSideBar() {
+            const nav = document.querySelector("nav");
+            fetch("./routes.json")
+                .then(res => res.json())
+                .then(json => (
+                    json.data.forEach(element => {
+                        nav.insertAdjacentHTML("beforeend", `
+                            <div class="dropdown" id="${element[0]}">
+                                <label><input type="checkbox">${element[1]}<span class="material">arrow_forward_ios</span></label>
+                                <div>
+                                    ${element[2].map(subelement => {
+                                        return `<button value="${subelement[1]}" onclick="openPage(this)">${subelement[0]}</button>`
+                                    }).join("")}
+                                </div>
+                            </div>
+                            `)
+                    })
+                ));
+        }
+        if (window.location.hash) {
+            loadSideBar();
+        }
+        function openPage(element) {
+            window.location.hash = element.getAttribute("value");
+            document.getElementById('frame').src = element.getAttribute("value");
+        }
         const urlParams = new URLSearchParams(window.location.search);
         const myParam = urlParams.get('recipe');
         if (myParam != null) document.getElementById('frame').src = `recipes/${myParam}.html`;

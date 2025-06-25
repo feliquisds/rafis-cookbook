@@ -1,0 +1,14 @@
+{
+    "title": "",
+    "description" : "",
+    "amount" : "",
+    "time" : "",
+    "ingredients" : {
+        "count" : 1,
+        "sections" : [
+            []
+        ]
+    },
+    "special" : null,
+    "steps" : []
+}

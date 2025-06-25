@@ -1,7 +1,24 @@
+:root {
+    --background: #fefadc;
+    --text: #20160c;
+    --navbar: #ffd695;
+    --navbar-button: #faedca;
+    --navbar-button-hover: #fef8e7;
+    --navbar-button-focus: #ffde84;
+    --separator: #e7866a;
+    --chip: #f3c3b5;
+    --print: #5b9129;
+    --print-hover: #4d7825;
+    --print-focus: #2d5803;
+    --checked: #bda884;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: var(--text);
+    scrollbar-color: var(--separator) var(--background);
 }
 
 @font-face {
@@ -16,6 +33,37 @@
 
 .material {
     font-family: Material;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* HTML: <div class="wavy-line"></div> */
+.wavy-line {
+  --s: 4px; /* size of the wave */
+  --b: 2px; /* thickness of the line */
+  --m: 1; /* curvature of the wave [0 2] */
+  margin-bottom: 20px;
+  
+  background: var(--separator);
+  --R: calc(var(--s)*sqrt(var(--m)*var(--m) + 1) + var(--b)/2);
+  height: calc(2*var(--R));
+  width: 100%;
+  --_g: #0000 calc(99% - var(--b)), #000 calc(101% - var(--b)) 99%, #0000 101%;
+  mask:
+    radial-gradient(var(--R) at left 50% bottom calc(-1*var(--m)*var(--s)), var(--_g)) 
+     calc(50% - 2*var(--s)) calc(50% - var(--s)/2 - var(--b)/2)/calc(4*var(--s)) calc(var(--s) + var(--b)) repeat-x,
+    radial-gradient(var(--R) at left 50% top calc(-1*var(--m)*var(--s)),var(--_g)) 
+     50% calc(50% + var(--s)/2 + var(--b)/2)/calc(4*var(--s)) calc(var(--s) + var(--b)) repeat-x;
+}
+
+#spine {
+    width: 40px;
+    height: 100%;
+    object-fit: cover;
 }
 
 
@@ -25,11 +73,12 @@
     padding: 0;
     display: flex;
     flex-direction: row;
+    overflow-y: hidden;
 }
 
 body {
     padding: 2rem;
-    background-color: #f4f4f4;
+    background-color: var(--background);
 }
 
 iframe {
@@ -45,8 +94,7 @@ h1 {
 /* navigation */
 nav {
     padding: 2rem 1rem;
-    background-color: white;
-    box-shadow: 0.25em 0.25em 0.75em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
+    background-color: var(--navbar);
     height: 100vh;
     width: 20rem;
     border-radius: 0 30px 30px 0;
@@ -62,24 +110,28 @@ nav > a {
     font-size: x-large;
 }
 
-nav > form, nav > form > * {
+nav > * {
     width: 100%;
 }
 
-nav > form > *:not(:last-child) {
-    margin-bottom: 20px;
+nav > *:not(:last-child, :nth-child(1)) {
+    margin-bottom: 5px;
 }
 
 
 
 /* dropdown */
 .dropdown {
-    background-color: #f4f4f4;
-    box-shadow: 0.25em 0.25em 0.75em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
-    border-radius: 20px;
+    background-color: var(--navbar-button);
+    border-radius: 7px;
     display: grid;
-    grid-template-rows: 2.75rem 0fr;
+    grid-template-rows: max-content 0fr;
     transition: 200ms;
+}
+
+.first {
+    border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 .dropdown > label > input {
@@ -96,13 +148,19 @@ nav > form > *:not(:last-child) {
 
 .dropdown > label > span {
     transition: 200ms;
+    margin-left: 5px;
 }
 
 .dropdown > div {
     overflow: hidden;
+    padding: 0 5px;
 }
 
-.dropdown > div > *:not(:last-child) {
+/* .dropdown > div > .test {
+    background-color: var(--navbar-button-hover);
+} */
+
+.dropdown > div > * {
     margin-bottom: 5px;
 }
 
@@ -111,32 +169,43 @@ nav > form > *:not(:last-child) {
     border: none;
     text-align: left;
     padding: 10px 15px;
-    border-radius: 20px;
+    border-radius: 15px;
     cursor: pointer;
     width: 100%;
+    transition: 200ms;
 }
 
 .dropdown > div > button:hover {
-    background-color: white;
+    background-color: var(--navbar-button-hover);
 }
 
 .dropdown > div > button:focus {
-    background-color: #dadada;
+    background-color: var(--navbar-button-focus);
+    transform: scale(98%);
 }
 
 .dropdown:has(input:checked) {
-    grid-template-rows: 2.75rem 1fr;
+    grid-template-rows: max-content 1fr;
+    border-radius: 20px;
 }
 
 .dropdown:has(input:checked) > label > span {
     transform: rotate(90deg);
 }
 
+nav > *:nth-child(2) {
+    border-radius: 20px 20px 7px 7px;
+}
+
+nav > *:last-child {
+    border-radius: 7px 7px 20px 20px;
+}
+
 
 
 /* recipe header */
 .recipe-header {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .recipe-header > div {
@@ -144,13 +213,14 @@ nav > form > *:not(:last-child) {
     margin-bottom: 20px;
 }
 
-.recipe-header > div > span:not(:last-child) {
+.recipe-header > div > div:not(:last-child) {
     margin-right: 10px;
 }
 
 .chip {
-    background-color: #fcfcfc;
-    box-shadow: 0.25em 0.25em 0.75em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
+    background-color: transparent;
+    border-color: var(--chip);
+    border: 1.5px solid var(--navbar);
     padding: 5px 10px;
     border-radius: 20px;
     display: flex;
@@ -161,49 +231,88 @@ nav > form > *:not(:last-child) {
     margin-right: 5px;
 }
 
+.print {
+    border: none;
+    font-size: medium;
+    background-color: var(--print);
+    transition: 200ms;
+}
+
+.print > * {
+    color: white;
+}
+
+.print:hover {
+    background-color: var(--print-hover);
+}
+
+.print:focus {
+    background-color: var(--print-focus);
+    transform: scale(98%);
+}
+
 
 
 /* ingredients */
-.ingredients {
+#ingredients, #ingredients > div {
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
 }
 
-.ingredients > h2 {
+#ingredients {
+    margin-bottom: 25px;
+}
+
+#ingredients > h2 {
     margin-bottom: 20px;
 }
 
-.ingredients > label {
+#ingredients > div > label {
     width: fit-content;
+}
+
+#ingredients > div > label:not(:last-child) {
     margin-bottom: 10px;
 }
 
-.ingredients > label > input {
+#ingredients > div > label > input {
     margin-right: 10px;
+    accent-color: var(--separator);
 }
 
-.ingredients > label > input:checked + span {
-    color: gray;
+#ingredients > div > label > input:checked + span {
+    color: var(--checked);
     text-decoration: line-through;
+}
+
+#ingredients > .section {
+    margin-bottom: 20px;
+}
+
+#ingredients > * > h3 {
+    margin-bottom: 10px;
+}
+
+#ingredients > #special {
+    margin-top: 15px;
 }
 
 
 
 /* steps */
-.steps > h2 {
+#steps > h2 {
     margin-bottom: 20px;
 }
 
-.steps > span > h2 {
-    margin-right: 20px;
+#steps > div > h2 {
+    flex: 0 0 50px;
 }
 
-.steps > span {
+#steps > div {
     display: flex;
     align-items: center;
 }
 
-.steps > span:not(:last-child) {
-    margin-bottom: 30px;
+#steps > div:not(:last-child) {
+    margin-bottom: 20px;
 }

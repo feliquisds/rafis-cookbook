@@ -1,20 +1,48 @@
 {
     "data": [
         [
-            "useful_info",
-            "Useful info",
+            "informacao_util_na_cozinha",
+            "Informação útil na cozinha",
             [
                 [
-                    "Measurement units",
-                    "useful_info/measurement_units.html"
+                    "Unidades de medida",
+                    "informacao_util_na_cozinha/unidades_de_medida"
                 ],
                 [
-                    "Commas are important",
-                    "useful_info/commas_are_important.html"
+                    "A importância das vírgulas",
+                    "informacao_util_na_cozinha/a_importancia_das_virgulas"
                 ],
                 [
-                    "The Rafi Difficulty Scale",
-                    "useful_info/the_rafi_difficulty_scale.html"
+                    "A Escala Rafael de Dificuldade",
+                    "informacao_util_na_cozinha/a_escala_rafael_de_dificuldade"
+                ]
+            ]
+        ],
+        [
+            "bebidas_sem_alcool",
+            "Bebidas sem álcool",
+            [
+                [
+                    "Refresco de hibisco",
+                    "refresco_de_hibisco"
+                ],
+                [
+                    "Chocolate quente",
+                    "chocolate_quente"
+                ],
+                [
+                    "Limonada de limão-siciliano",
+                    "limonada_de_limao_siciliano"
+                ]
+            ]
+        ],
+        [
+            "doces_e_sobremesas",
+            "Doces e sobremesas",
+            [
+                [
+                    "Bolo mármore de banana e chocolate",
+                    "bolo_marmore_de_banana_e_chocolate"
                 ]
             ]
         ]

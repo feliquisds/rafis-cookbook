@@ -10,5 +10,6 @@
         ]
     },
     "special" : null,
-    "steps" : []
+    "steps" : [],
+    "notes" : []
 }

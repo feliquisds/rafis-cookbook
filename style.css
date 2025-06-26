@@ -47,6 +47,7 @@
   --b: 2px; /* thickness of the line */
   --m: 1; /* curvature of the wave [0 2] */
   margin-bottom: 20px;
+  margin-top: 25px;
   
   background: var(--separator);
   --R: calc(var(--s)*sqrt(var(--m)*var(--m) + 1) + var(--b)/2);
@@ -85,7 +86,7 @@ iframe {
     width: 100%;
 }
 
-h1 {
+h1, h2 {
     margin-bottom: 20px;
 }
 
@@ -125,7 +126,7 @@ nav > *:not(:last-child, :nth-child(1)) {
     background-color: var(--navbar-button);
     border-radius: 7px;
     display: grid;
-    grid-template-rows: max-content 0fr;
+    grid-template-rows: minmax(2.75rem, max-content) 0fr;
     transition: 200ms;
 }
 
@@ -185,7 +186,7 @@ nav > *:not(:last-child, :nth-child(1)) {
 }
 
 .dropdown:has(input:checked) {
-    grid-template-rows: max-content 1fr;
+    grid-template-rows: minmax(2.75rem, max-content) 1fr;
     border-radius: 20px;
 }
 
@@ -204,10 +205,6 @@ nav > *:last-child {
 
 
 /* recipe header */
-.recipe-header {
-    margin-bottom: 25px;
-}
-
 .recipe-header > div {
     display: flex;
     margin-bottom: 20px;
@@ -236,6 +233,7 @@ nav > *:last-child {
     font-size: medium;
     background-color: var(--print);
     transition: 200ms;
+    cursor: pointer;
 }
 
 .print > * {
@@ -257,14 +255,6 @@ nav > *:last-child {
 #ingredients, #ingredients > div {
     display: flex;
     flex-direction: column;
-}
-
-#ingredients {
-    margin-bottom: 25px;
-}
-
-#ingredients > h2 {
-    margin-bottom: 20px;
 }
 
 #ingredients > div > label {
@@ -300,11 +290,8 @@ nav > *:last-child {
 
 
 /* steps */
-#steps > h2 {
-    margin-bottom: 20px;
-}
-
 #steps > div > h2 {
+    margin: 0;
     flex: 0 0 50px;
 }
 
@@ -315,4 +302,11 @@ nav > *:last-child {
 
 #steps > div:not(:last-child) {
     margin-bottom: 20px;
+}
+
+
+
+/* notes */
+#notes > p:not(:last-child) {
+    margin-bottom: 5px;
 }

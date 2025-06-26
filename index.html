@@ -46,8 +46,11 @@
         }
 
         function openRecipe(element) {
-            window.location.hash = element.parentElement.parentElement.id + "/" + element.id;
-            document.getElementById("frame").src = "recipe.html";
+            let newHash = element.parentElement.parentElement.id + "/" + element.id;
+            if (newHash != window.location.hash.substr(1)) {
+                window.location.hash = newHash;
+                document.getElementById("frame").src = "recipe.html";
+            }
         }
         
         loadSideBar();

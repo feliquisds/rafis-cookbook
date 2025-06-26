@@ -5,51 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafi's cookbook</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/styling/style.css">
 </head>
 
 <body class="mainbody">
     <div>
-        <img src="spine.jpg" id="spine">
+        <img src="assets/images/spine.jpg" id="spine">
     </div>
     <nav>
         <a href="./"><h1>Rafi's cookbook</h1></a>
     </nav>
 
-    <iframe src="recipe.html" frameborder="0" id="frame"></iframe>
+    <iframe src="main.html" frameborder="0" id="frame"></iframe>
 
     <script>
         function loadSideBar() {
             const nav = document.querySelector("nav");
-            fetch("./routes.json")
+            fetch("assets/routes.json")
                 .then(res => res.json())
-                .then(json => (
-                    json.data.forEach(element => {
-                        nav.insertAdjacentHTML("beforeend", `
-                            <div class="dropdown" id="${element[0]}">
-                                <label><input type="checkbox">${element[1]}<span class="material">arrow_forward_ios</span></label>
-                                <div>
-                                    ${element[2].map(subelement => {
-                                        return `<button value="${subelement[1]}" onclick="openPage(this)">${subelement[0]}</button>`
-                                    }).join("")}
-                                </div>
-                            </div>
-                            `)
-                    })
-                ));
+                .then(json => {
+                    for (const [island, options] of Object.entries(json)) {
+                        nav.insertAdjacentHTML("beforeend", 
+                            `<div id="${island}">
+                                ${options.map(element => {
+                                    return `
+                                        <div class="dropdown" id="${element[0]}">
+                                            <label><input type="checkbox">${element[1]}<span class="material">arrow_forward_ios</span></label>
+                                            <div>
+                                                ${element[2].map(subelement => {
+                                                    return `<button id="${subelement[1]}" onclick="openRecipe(this)">${subelement[0]}</button>`
+                                                }).join("")}
+                                            </div>
+                                        </div>
+                                    `
+                                }).join("")}
+                            </div>`
+                        )
+                    }
+                });
         }
 
-        function openPage(element) {
-            window.location.hash = element.getAttribute("value");
-            document.getElementById('frame').src = element.getAttribute("value");
+        function openRecipe(element) {
+            window.location.hash = element.parentElement.parentElement.id + "/" + element.id;
+            document.getElementById("frame").src = "recipe.html";
         }
-
-        loadSideBar();
         
-        const urlParams = new URLSearchParams(window.location.search);
-        const myParam = urlParams.get('recipe');
-        if (myParam != null) document.getElementById('frame').src = `recipes/${myParam}.html`;
-        // document.getElementById('frame').contentWindow.print();
+        loadSideBar();
+        if (window.location.hash.length > 1) {
+            document.getElementById("frame").src = "recipe.html";
+        }
     </script>
 </body>
 

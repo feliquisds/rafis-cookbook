@@ -5,66 +5,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receita</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/styling/style.css">
 </head>
 
 <body>
-    <h1 id="title">Nome da receita</h1>
+    <h1 id="title"></h1>
     
     <div class="recipe-header">
         <div>
-            <div class="chip"><span class="material">room_service</span><p id="amount">Porções</p></div>
-            <div class="chip"><span class="material">schedule</span><p id="time">Tempo necessário</p></div>
+            <div class="chip"><span class="material">room_service</span><p id="amount"></p></div>
+            <div class="chip"><span class="material">schedule</span><p id="time"></p></div>
             <button class="chip print"><span class="material">print</span><p>Imprimir</p></button>
         </div>
-        <p id="description">Descrição da receita</p>
+        <p id="description"></p>
     </div>
 
     <div class="wavy-line"></div>
     
     <div id="ingredients">
         <h2>Ingredientes</h2>
-
-        <div class="section">
-            <h3>Separador opcional 1</h3>
-            <label><input type="checkbox"><span>Ingredientes vão aqui</span></label>
-            <label><input type="checkbox"><span>Ingredientes vão aqui</span></label>
-            <label><input type="checkbox"><span>Ingredientes vão aqui</span></label>
-        </div>
-
-        <div class="section">
-            <h3>Separador opcional 2</h3>
-            <label><input type="checkbox"><span>Ingredientes vão aqui</span></label>
-            <label><input type="checkbox"><span>Ingredientes vão aqui</span></label>
-            <label><input type="checkbox"><span>Ingredientes vão aqui</span></label>
-        </div>
-
-        <div id="special">
-            <h3>Equipamento especial:</h3>
-            <p>Nome do equipamento</p>
-        </div>
     </div>
 
     <div class="wavy-line"></div>
     
     <div id="steps">
         <h2>Passos</h2>
-        <div><h2>1.</h2><p>Passos vão aqui</p></div>
-        <div><h2>2.</h2><p>Passos vão aqui</p></div>
-        <div><h2>3.</h2><p>Passos vão aqui</p></div>
-    </div>
-    
-    <div class="wavy-line"></div>
-
-    <div id="notes">
-        <h2>Informação adicional</h2>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, aspernatur? Perferendis sunt impedit, porro, repudiandae dignissimos quasi quidem optio repellendus assumenda debitis quisquam, est sint aliquid dolorem vel ea deserunt?</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, aspernatur? Perferendis sunt impedit, porro, repudiandae dignissimos quasi quidem optio repellendus assumenda debitis quisquam, est sint aliquid dolorem vel ea deserunt?</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, aspernatur? Perferendis sunt impedit, porro, repudiandae dignissimos quasi quidem optio repellendus assumenda debitis quisquam, est sint aliquid dolorem vel ea deserunt?</p>
     </div>
 
     <script>
+        function loadContent(url) {
+            var hash = url.substr(1);
+            fetch(`./${hash}.json`)
+                    .then(res => res.json())
+                    .then(json => 
+                        {
+                            document.getElementById("title").innerHTML = json.title;
+                            document.getElementById("description").innerHTML = json.description;
+                            document.getElementById("amount").innerHTML = json.amount;
+                            document.getElementById("time").innerHTML = json.time;
+                            
+                            const ingredients = document.getElementById("ingredients");
+                            if (json.ingredients.count == 1) {
+                                ingredients.insertAdjacentHTML("beforeend", `<div class="section"></div>`);
+                                json.ingredients.sections.forEach(element => {
+                                    document.getElementsByClassName("section")[0].insertAdjacentHTML("beforeend",
+                                        `<label><input type="checkbox"><span>${element}</span></label>`
+                                    )
+                                })
+                            }
+                            else {
+                                //TODO
+                            }
+    
+                            if (json.special != null) {
+                                ingredients.insertAdjacentHTML("beforeend", 
+                                    `<div id="special">
+                                        <h3>Equipamento especial:</h3>
+                                        <p>${json.special}</p>
+                                    </div>`
+                                )
+                            }
+    
+                            let count = 1;
+                            json.steps.forEach(element => {
+                                document.getElementById("steps").insertAdjacentHTML("beforeend", 
+                                    `<div><h2>${count}.</h2><p>${element}</p></div>`
+                                )
+                                count += 1;
+                            });
+    
+                            if (json.notes != null) {
+                                document.body.insertAdjacentHTML("beforeend", 
+                                    `<div class="wavy-line"></div>
+    
+                                    <div id="notes">
+                                        <h2>Informação adicional</h2>
+                                    </div>`
+                                )
+                                json.notes.forEach(element => {
+                                    document.getElementById("notes").insertAdjacentHTML("beforeend",
+                                        `<p>${element}</p>`
+                                    )
+                                });
+                            }
+                        }
+                    );
+        }
 
+        function findRecipe() {
+            const recipe = top.window.location.hash.substr(1).split("/");
+            top.document.getElementById(recipe[0]).children[0].children[0].checked = true;
+            top.document.getElementById(recipe[1]).classList.add("selected");
+        }
+
+        loadContent(top.window.location.hash);
+        findRecipe();
+        top.addEventListener("hashchange", (event) => window.location.reload())
     </script>
 </body>
 

@@ -1,23 +1,25 @@
 {
-    "data": [
+    "main" : [
         [
             "informacao_util_na_cozinha",
             "Informação útil na cozinha",
             [
                 [
                     "Unidades de medida",
-                    "informacao_util_na_cozinha/unidades_de_medida"
+                    "unidades_de_medida"
                 ],
                 [
                     "A importância das vírgulas",
-                    "informacao_util_na_cozinha/a_importancia_das_virgulas"
+                    "a_importancia_das_virgulas"
                 ],
                 [
                     "A Escala Rafael de Dificuldade",
-                    "informacao_util_na_cozinha/a_escala_rafael_de_dificuldade"
+                    "a_escala_rafael_de_dificuldade"
                 ]
             ]
-        ],
+        ]
+    ],
+    "recipes": [
         [
             "bebidas_sem_alcool",
             "Bebidas sem álcool",

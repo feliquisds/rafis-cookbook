@@ -5,11 +5,9 @@
     "time" : "",
     "ingredients" : {
         "count" : 1,
-        "sections" : [
-            []
-        ]
+        "sections" : []
     },
     "special" : null,
     "steps" : [],
-    "notes" : []
+    "notes" : null
 }

@@ -97,10 +97,18 @@
             top.document.getElementById(recipe[0]).children[0].children[0].checked = true;
             top.document.getElementById(recipe[1]).classList.add("selected");
         }
+        
+        function deselectRecipe(hash) {
+            const recipe = hash.split("/");
+            top.document.getElementById(recipe[1]).classList.remove("selected");
+        }
 
         loadContent(top.window.location.hash);
         findRecipe();
-        top.addEventListener("hashchange", (event) => window.location.reload())
+        top.addEventListener("hashchange", (event) => {
+            deselectRecipe(event.oldURL.split("#")[1]);
+            window.location.reload();
+        })
     </script>
 </body>
 

@@ -179,7 +179,7 @@ nav > div > *:not(:last-child) {
     background-color: var(--navbar-button-hover);
 }
 
-.dropdown > div > button:focus {
+.dropdown > div > button:focus:hover:active {
     background-color: var(--navbar-button-focus);
     transform: scale(98%);
 }
@@ -251,7 +251,7 @@ nav > div > *:only-child {
     background-color: var(--print-hover);
 }
 
-.print:focus {
+.print:focus:hover:active {
     background-color: var(--print-focus);
     transform: scale(98%);
 }

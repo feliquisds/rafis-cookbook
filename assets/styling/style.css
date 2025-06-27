@@ -164,7 +164,7 @@ nav > div > *:not(:last-child) {
     margin-bottom: 5px;
 }
 
-.dropdown > div > button {
+.dropdown > div > button, .search_result {
     background-color: transparent;
     border: none;
     text-align: left;
@@ -175,11 +175,11 @@ nav > div > *:not(:last-child) {
     transition: 200ms;
 }
 
-.dropdown > div > button:hover {
+.dropdown > div > button:hover, .search_result:hover {
     background-color: var(--navbar-button-hover);
 }
 
-.dropdown > div > button:focus:hover:active {
+.dropdown > div > button:focus:hover:active, .search_result:focus:hover:active {
     background-color: var(--navbar-button-focus);
     transform: scale(98%);
 }
@@ -316,4 +316,59 @@ nav > div > *:only-child {
 /* notes */
 #notes > p:not(:last-child) {
     margin-bottom: 5px;
+}
+
+
+
+/* search */
+search {
+    display: grid;
+    grid-template-rows: minmax(2.75rem, max-content) 0fr;
+    transition: 200ms;
+    background-color: var(--navbar-button);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+search:has(#searchbox:focus), search:has(#results:hover) {
+    grid-template-rows: minmax(2.75rem, max-content) 1fr;
+}
+
+#searchbox::placeholder {
+    color: var(--checked);
+}
+
+#searchbox {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: var(--navbar-button);
+    border: 5px solid var(--navbar-button);
+    border-radius: 20px;
+    height: 2.75rem;
+    transition: 200ms;
+}
+
+#searchbox:hover:not(:focus, :active) {
+    background-color: var(--navbar-button-hover);
+}
+
+#searchbox:focus {
+    outline: none;
+    background-color: var(--navbar-button-hover);
+}
+
+#results {
+    overflow: hidden;
+    padding: 0 5px;
+}
+
+#results > button {
+    margin-bottom: 5px;
+}
+
+#results > p {
+    margin-bottom: 10px;
+    color: var(--checked);
+    font-size: small;
 }

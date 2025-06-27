@@ -1,52 +1,28 @@
 {
-    "main" : [
-        [
-            "informacao_util_na_cozinha",
-            "Informação útil na cozinha",
-            [
-                [
-                    "Unidades de medida",
-                    "unidades_de_medida"
-                ],
-                [
-                    "A importância das vírgulas",
-                    "a_importancia_das_virgulas"
-                ],
-                [
-                    "A Escala Rafael de Dificuldade",
-                    "a_escala_rafael_de_dificuldade"
-                ]
+    "main": [
+        {
+            "title" : "Informação útil na cozinha",
+            "options" : [
+                "Unidades de medida",
+                "A importância das vírgulas",
+                "A Escala Rafael de Dificuldade"
             ]
-        ]
+        }
     ],
     "recipes": [
-        [
-            "bebidas_sem_alcool",
-            "Bebidas sem álcool",
-            [
-                [
-                    "Refresco de hibisco",
-                    "refresco_de_hibisco"
-                ],
-                [
-                    "Chocolate quente",
-                    "chocolate_quente"
-                ],
-                [
-                    "Limonada de limão-siciliano",
-                    "limonada_de_limao_siciliano"
-                ]
+        {
+            "title" : "Bebidas sem álcool",
+            "options" : [
+                "Refresco de hibisco",
+                "Chocolate quente",
+                "Limonada de limão-siciliano"
             ]
-        ],
-        [
-            "doces_e_sobremesas",
-            "Doces e sobremesas",
-            [
-                [
-                    "Bolo mármore de banana e chocolate",
-                    "bolo_marmore_de_banana_e_chocolate"
-                ]
+        },
+        {
+            "title" : "Doces e sobremesas",
+            "options" : [
+                "Bolo mármore de banana e chocolate"
             ]
-        ]
+        }
     ]
 }

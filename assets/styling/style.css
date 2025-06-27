@@ -367,6 +367,10 @@ search:has(#searchbox:focus), search:has(#results:hover) {
     margin-bottom: 5px;
 }
 
+#results > button > b {
+    font-weight: 800;
+}
+
 #results > p {
     margin-bottom: 10px;
     color: var(--checked);

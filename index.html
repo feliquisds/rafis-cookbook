@@ -60,17 +60,18 @@
             return searchableString(str).replace(/[^A-Z0-9]+/ig, "_");
         }
 
-        function search(keyword) {
+        function search(input) {
+            let keyword = searchableString(input.trim());
             let results = document.querySelector('#results')
 
-            if (keyword.trim() != '') {
+            if (keyword != '') {
                 fetch("assets/routes.json")
                     .then(res => res.json())
                     .then(islands => {
                         let search = []
                         islands.recipes.forEach(dropdown => {
                             let entry = [dropdown.options.filter(recipe => {
-                                return searchableString(recipe).includes(searchableString(keyword));
+                                return searchableString(recipe).includes(keyword);
                             }), dropdown.title]
                             if (entry[0].length != 0) search.push(entry);
                         });
@@ -78,11 +79,14 @@
                         if (search.length != 0) {
                             results.innerHTML = `${search.map(dropdown => {
                                 return dropdown[0].map(recipe => {
-                                    return `<button id="${routeString(dropdown[1])}/${routeString(recipe)}" onclick="openSearchRecipe(this)" class="search_result">${recipe}</button>`;
+                                    return `<button id="${routeString(dropdown[1])}/${routeString(recipe)}" onclick="openSearchRecipe(this)" class="search_result">${recipe.substr(0, searchableString(recipe).indexOf(keyword))
+                                        }<b>${recipe.substr(searchableString(recipe).indexOf(keyword), keyword.length)
+                                        }</b>${recipe.substr(searchableString(recipe).indexOf(keyword) + keyword.length)
+                                        }</button>`;
                                 }).join("");
                             }).join("")}`;
                         } else {
-                            results.innerHTML = "Nenhum resultado";
+                            results.innerHTML = "<p>Nenhum resultado</p>";
                         }
                     });
             } else {

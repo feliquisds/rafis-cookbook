@@ -10,7 +10,7 @@
 
 <body>
     <h1 id="title"></h1>
-    
+
     <div class="recipe-header">
         <div>
             <div class="chip"><span class="material">room_service</span><p id="amount"></p></div>
@@ -21,94 +21,72 @@
     </div>
 
     <div class="wavy-line"></div>
-    
+
     <div id="ingredients">
         <h2>Ingredientes</h2>
     </div>
 
     <div class="wavy-line"></div>
-    
+
     <div id="steps">
         <h2>Passos</h2>
     </div>
 
     <script>
-        function loadContent(url) {
-            var hash = url.substr(1);
-            fetch(`./${hash}.json`)
-                    .then(res => res.json())
-                    .then(json => 
-                        {
-                            document.getElementById("title").innerHTML = json.title;
-                            document.getElementById("description").innerHTML = json.description;
-                            document.getElementById("amount").innerHTML = json.amount;
-                            document.getElementById("time").innerHTML = json.time;
-                            
-                            const ingredients = document.getElementById("ingredients");
-                            if (json.ingredients.count == 1) {
-                                ingredients.insertAdjacentHTML("beforeend", `<div class="section"></div>`);
-                                json.ingredients.sections.forEach(element => {
-                                    document.getElementsByClassName("section")[0].insertAdjacentHTML("beforeend",
-                                        `<label><input type="checkbox"><span>${element}</span></label>`
-                                    )
-                                })
-                            }
-                            else {
-                                //TODO
-                            }
-    
-                            if (json.special != null) {
-                                ingredients.insertAdjacentHTML("beforeend", 
-                                    `<div id="special">
+        fetch(`./${top.window.location.search.substr(1)}.json`)
+            .then(res => res.json())
+            .then(json => {
+                document.getElementById("title").innerHTML = json.title;
+                document.getElementById("description").innerHTML = json.description;
+                document.getElementById("amount").innerHTML = json.amount;
+                document.getElementById("time").innerHTML = json.time;
+
+                const ingredients = document.getElementById("ingredients");
+                if (json.ingredients.count == 1) {
+                    ingredients.insertAdjacentHTML("beforeend", `<div class="section"></div>`);
+                    json.ingredients.sections.forEach(element => {
+                        document.getElementsByClassName("section")[0].insertAdjacentHTML("beforeend",
+                            `<label><input type="checkbox"><span>${element}</span></label>`
+                        )
+                    })
+                }
+                else {
+                    //TODO
+                }
+
+                if (json.special != null) {
+                    ingredients.insertAdjacentHTML("beforeend",
+                        `<div id="special">
                                         <h3>Equipamento especial:</h3>
                                         <p>${json.special}</p>
                                     </div>`
-                                )
-                            }
-    
-                            let count = 1;
-                            json.steps.forEach(element => {
-                                document.getElementById("steps").insertAdjacentHTML("beforeend", 
-                                    `<div><h2>${count}.</h2><p>${element}</p></div>`
-                                )
-                                count += 1;
-                            });
-    
-                            if (json.notes != null) {
-                                document.body.insertAdjacentHTML("beforeend", 
-                                    `<div class="wavy-line"></div>
+                    )
+                }
+
+                let count = 1;
+                json.steps.forEach(element => {
+                    document.getElementById("steps").insertAdjacentHTML("beforeend",
+                        `<div><h2>${count}.</h2><p>${element}</p></div>`
+                    )
+                    count += 1;
+                });
+
+                if (json.notes != null) {
+                    document.body.insertAdjacentHTML("beforeend",
+                        `<div class="wavy-line"></div>
     
                                     <div id="notes">
                                         <h2>Informação adicional</h2>
                                     </div>`
-                                )
-                                json.notes.forEach(element => {
-                                    document.getElementById("notes").insertAdjacentHTML("beforeend",
-                                        `<p>${element}</p>`
-                                    )
-                                });
-                            }
-                        }
-                    );
-        }
-
-        function findRecipe() {
-            const recipe = top.window.location.hash.substr(1).split("/");
-            top.document.getElementById(recipe[0]).children[0].children[0].checked = true;
-            top.document.getElementById(recipe[1]).classList.add("selected");
-        }
-        
-        function deselectRecipe(hash) {
-            const recipe = hash.split("/");
-            top.document.getElementById(recipe[1]).classList.remove("selected");
-        }
-
-        loadContent(top.window.location.hash);
-        findRecipe();
-        top.addEventListener("hashchange", (event) => {
-            deselectRecipe(event.oldURL.split("#")[1]);
-            window.location.reload();
-        })
+                    )
+                    json.notes.forEach(element => {
+                        document.getElementById("notes").insertAdjacentHTML("beforeend",
+                            `<p>${element}</p>`
+                        )
+                    });
+                }
+            }
+            );
     </script>
 </body>
 

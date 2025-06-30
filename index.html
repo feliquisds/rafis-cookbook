@@ -79,7 +79,7 @@
                         if (search.length != 0) {
                             results.innerHTML = `${search.map(dropdown => {
                                 return dropdown[0].map(recipe => {
-                                    return `<button id="${routeString(dropdown[1])}/${routeString(recipe)}" onclick="openSearchRecipe(this)" class="search_result">${recipe.substr(0, searchableString(recipe).indexOf(keyword))
+                                    return `<button id="${routeString(dropdown[1])}/${routeString(recipe)}" onclick="openOption(this)" class="search_result">${recipe.substr(0, searchableString(recipe).indexOf(keyword))
                                         }<b>${recipe.substr(searchableString(recipe).indexOf(keyword), keyword.length)
                                         }</b>${recipe.substr(searchableString(recipe).indexOf(keyword) + keyword.length)
                                         }</button>`;
@@ -105,10 +105,10 @@
                                 ${content.map(dropdown => {
                                 return `
                                         <div class="dropdown" id="${routeString(dropdown.title)}">
-                                            <label><input type="checkbox">${dropdown.title}<span class="material">arrow_forward_ios</span></label>
+                                            <label><input type="checkbox" ${currentRecipe.substr(1).split("/")[0] == routeString(dropdown.title) ? "checked" : ""}>${dropdown.title}<span class="material">arrow_forward_ios</span></label>
                                             <div>
                                                 ${dropdown.options.map(recipe => {
-                                    return `<button id="${routeString(recipe)}" onclick="openRecipe(this)">${recipe}</button>`
+                                    return `<button id="${routeString(recipe)}" onclick="openOption(this)" ${currentRecipe.split("/")[1] == routeString(recipe) ? "class=\"selected\"" : ""}>${recipe}</button>`
                                 }).join("")}
                                             </div>
                                         </div>
@@ -120,26 +120,37 @@
                 });
         }
 
-        function openRecipe(element) {
-            let newHash = element.parentElement.parentElement.id + "/" + element.id;
-            if (newHash != window.location.hash.substr(1)) {
-                window.location.hash = newHash;
+        function selectOption(recipe) {
+            document.getElementById(recipe[0]).children[0].children[0].checked = true;
+            document.getElementById(recipe[1]).classList.add("selected");
+        }
+
+        function deselectOption(recipe) {
+            if (recipe != '') top.document.getElementById(recipe).classList.remove("selected");
+        }
+
+        function openOption(element) {
+            let newUrl = element.id.split("/").length > 1 ? element.id : element.parentElement.parentElement.id + "/" + element.id;
+            if (newUrl != currentRecipe) {
+                deselectOption(currentRecipe.split("/")[1]);
+                currentRecipe = newUrl;
+                selectOption(currentRecipe.split("/"));
+                window.history.pushState({}, "", "?" + newUrl);
                 document.getElementById("frame").src = "recipe.html";
             }
         }
 
-        function openSearchRecipe(element) {
-            let newHash = element.id;
-            if (newHash != window.location.hash.substr(1)) {
-                window.location.hash = newHash;
-                document.getElementById("frame").src = "recipe.html";
-            }
-        }
-
+        var currentRecipe = window.location.search;
         loadSideBar();
-        if (window.location.hash.length > 1) {
+        if (currentRecipe.length > 1) {
             document.getElementById("frame").src = "recipe.html";
         }
+        addEventListener("popstate", (event) => {
+            deselectOption(currentRecipe.split("/")[1]);
+            currentRecipe = window.location.search;
+            selectOption(currentRecipe.substr(1).split("/"));
+            document.getElementById("frame").contentWindow.location.reload();
+        });
     </script>
 </body>
 

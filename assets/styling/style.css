@@ -214,12 +214,12 @@ nav > div > *:not(:last-child) {
     border-radius: 15px;
 }
 
-.dropdown:has(label > input:checked) {
+.dropdown:has(> label > input:checked) {
     grid-template-rows: minmax(2.75rem, max-content) 1fr;
     border-radius: 20px;
 }
 
-.dropdown:has(label > input:checked) > label > span {
+.dropdown:has(> label > input:checked) > label > span {
     transform: rotate(90deg);
 }
 

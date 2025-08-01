@@ -13,6 +13,7 @@
 
     <div class="recipe-header">
         <div>
+            <div class="chip"><span class="material">room_service</span><p id="difficulty"></p></div>
             <div class="chip"><span class="material">room_service</span><p id="amount"></p></div>
             <div class="chip"><span class="material">schedule</span><p id="time"></p></div>
             <button class="chip print"><span class="material">print</span><p>Imprimir</p></button>
@@ -29,11 +30,11 @@
     <div class="wavy-line"></div>
 
     <div id="steps">
-        <h2>Passos</h2>
+        <h2>Modo de preparo</h2>
     </div>
 
     <script>
-        fetch(`./${top.window.location.search.substr(1)}.json`)
+        fetch(`./${decodeURI(top.window.location.search.substr(1))}.json`)
             .then(res => res.json())
             .then(json => {
                 document.getElementById("title").innerHTML = json.title;
@@ -41,20 +42,23 @@
                 document.getElementById("amount").innerHTML = json.amount;
                 document.getElementById("time").innerHTML = json.time;
 
+                document.getElementById("difficulty").innerHTML = json.difficulty == "easy" ?
+                "Fácil" : (json.difficulty == "medium" ? "Médio" : "Difícil");
+
                 const ingredients = document.getElementById("ingredients");
-                if (json.ingredients.count == 1) {
+                if (json.custom) {
+                    //TODO
+                }
+                else {
                     ingredients.insertAdjacentHTML("beforeend", `<div class="section"></div>`);
-                    json.ingredients.sections.forEach(element => {
+                    json.ingredients.forEach(element => {
                         document.getElementsByClassName("section")[0].insertAdjacentHTML("beforeend",
                             `<label><input type="checkbox"><span>${element}</span></label>`
                         )
                     })
                 }
-                else {
-                    //TODO
-                }
 
-                if (json.special != null) {
+                if (json.special != "") {
                     ingredients.insertAdjacentHTML("beforeend",
                         `<div id="special">
                                         <h3>Equipamento especial:</h3>
@@ -70,21 +74,6 @@
                     )
                     count += 1;
                 });
-
-                if (json.notes != null) {
-                    document.body.insertAdjacentHTML("beforeend",
-                        `<div class="wavy-line"></div>
-    
-                                    <div id="notes">
-                                        <h2>Informação adicional</h2>
-                                    </div>`
-                    )
-                    json.notes.forEach(element => {
-                        document.getElementById("notes").insertAdjacentHTML("beforeend",
-                            `<p>${element}</p>`
-                        )
-                    });
-                }
             }
             );
     </script>

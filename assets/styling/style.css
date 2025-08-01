@@ -4,6 +4,7 @@
     --navbar: #ffd695;
     --navbar-button: #faedca;
     --navbar-button-hover: #fef8e7;
+    --navbar-button-open: #ffedcf;
     --navbar-button-focus: #ffde84;
     --navbar-button-selected: #ffd9bc;
     --separator: #e7866a;
@@ -96,7 +97,7 @@ h1, h2 {
 
 /* navigation */
 nav {
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 1rem 1rem;
     background-color: var(--navbar);
     height: 100vh;
     width: 20rem;
@@ -138,16 +139,40 @@ nav > div > *:not(:last-child) {
     transition: 200ms;
 }
 
+.dropdown > div > *:first-child {
+    margin-top: 5px;
+    border-radius: 15px 15px 5px 5px;
+}
+
+.dropdown > div > *:last-child {
+    border-radius: 5px 5px 15px 15px;
+}
+
+.dropdown > div > *:only-child {
+    border-radius: 15px;
+}
+
 .dropdown > label > input {
     display: none;
 }
 
 .dropdown > label {
     padding: 10px 15px;
+    border-radius: inherit;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+    transition: 200ms;
+}
+
+.dropdown > label:hover {
+    background-color: var(--navbar-button-hover);
+}
+
+.dropdown:has(input:active) > label:hover {
+    background-color: var(--navbar-button-focus);
+    transform: scale(98%);
 }
 
 .dropdown > label > span {
@@ -164,36 +189,37 @@ nav > div > *:not(:last-child) {
     margin-bottom: 5px;
 }
 
-.dropdown > div > button, .search_result {
-    background-color: transparent;
+.dropdown > div > button, nav > div > button, .search_result {
+    background-color: var(--navbar-button);
     border: none;
     text-align: left;
     padding: 10px 15px;
-    border-radius: 15px;
+    border-radius: 5px;
     cursor: pointer;
     width: 100%;
     transition: 200ms;
 }
 
-.dropdown > div > button:hover, .search_result:hover {
+.dropdown > div > button:hover, nav > div > button:hover, .search_result:hover {
     background-color: var(--navbar-button-hover);
 }
 
-.dropdown > div > button:focus:hover:active, .search_result:focus:hover:active {
+.dropdown > div > button:focus:hover:active, nav > div > button:focus:hover:active, .search_result:focus:hover:active {
     background-color: var(--navbar-button-focus);
     transform: scale(98%);
 }
 
 .dropdown > div > .selected {
     background-color: var(--navbar-button-selected);
+    border-radius: 15px;
 }
 
-.dropdown:has(input:checked) {
+.dropdown:has(label > input:checked) {
     grid-template-rows: minmax(2.75rem, max-content) 1fr;
     border-radius: 20px;
 }
 
-.dropdown:has(input:checked) > label > span {
+.dropdown:has(label > input:checked) > label > span {
     transform: rotate(90deg);
 }
 
@@ -282,7 +308,7 @@ nav > div > *:only-child {
     text-decoration: line-through;
 }
 
-#ingredients > .section {
+#ingredients > .section:not(:last-child) {
     margin-bottom: 20px;
 }
 
@@ -369,6 +395,19 @@ search:has(#searchbox:focus), search:has(#results:hover) {
 
 #results > button > b {
     font-weight: 800;
+}
+
+#results > button:first-child {
+    margin-top: 5px;
+    border-radius: 15px 15px 5px 5px;
+}
+
+#results > button:last-child {
+    border-radius: 5px 5px 15px 15px;
+}
+
+#results > button:only-child {
+    border-radius: 15px;
 }
 
 #results > p {

@@ -56,8 +56,20 @@
             return str;
         }
 
-        function routeString(str) {
-            return searchableString(str).replace(/[^A-Z0-9]+/ig, "_");
+        function findEntries(section_data, keyword, array = []) {
+            result = array
+            section_data.forEach(entry => {
+                let temp = Object.entries(entry)[0]
+                if (typeof entry == "string") {
+                    if (searchableString(entry).includes(keyword)) {
+                        result.push(entry)
+                    }
+                }
+                else {
+                    result = findEntries(temp[1], keyword, result)
+                }
+            })
+            return result
         }
 
         function search(input) {
@@ -68,22 +80,15 @@
                 fetch("assets/routes.json")
                     .then(res => res.json())
                     .then(islands => {
-                        let search = []
-                        islands.recipes.forEach(dropdown => {
-                            let entry = [dropdown.options.filter(recipe => {
-                                return searchableString(recipe).includes(keyword);
-                            }), dropdown.title]
-                            if (entry[0].length != 0) search.push(entry);
-                        });
+                        let search = findEntries(islands, keyword)
                         search.sort();
+                        search.length = Math.min(search.length, 10)
                         if (search.length != 0) {
-                            results.innerHTML = `${search.map(dropdown => {
-                                return dropdown[0].map(recipe => {
-                                    return `<button id="${routeString(dropdown[1])}/${routeString(recipe)}" onclick="openOption(this)" class="search_result">${recipe.substr(0, searchableString(recipe).indexOf(keyword))
-                                        }<b>${recipe.substr(searchableString(recipe).indexOf(keyword), keyword.length)
-                                        }</b>${recipe.substr(searchableString(recipe).indexOf(keyword) + keyword.length)
-                                        }</button>`;
-                                }).join("");
+                            results.innerHTML = `${search.map(entry => {
+                                return `<button id="${entry}_search" onclick="openOption(this)" class="search_result">${entry.substr(0, searchableString(entry).indexOf(keyword))
+                                    }<b>${entry.substr(searchableString(entry).indexOf(keyword), keyword.length)
+                                    }</b>${entry.substr(searchableString(entry).indexOf(keyword) + keyword.length)
+                                    }</button>`;
                             }).join("")}`;
                         } else {
                             results.innerHTML = "<p>Nenhum resultado</p>";
@@ -94,62 +99,91 @@
             }
         }
 
+        function sideBarItems(section_data) {
+            result = ""
+            section_data.forEach(entry => {
+                let temp = Object.entries(entry)[0]
+                let dropdown_name = temp[0]
+                let dropdown_data = temp[1]
+                result += typeof entry == "string" ?
+                `<button id="${entry}" onclick="openOption(this)" ${currentRecipe.split("/").includes(entry) ? "class=\"selected\"" : ""}>${entry}</button>`
+                :
+                `<div class="dropdown" id="${dropdown_name}">
+                    <label><input type="checkbox" ${currentRecipe.substr(1).split("/").includes(dropdown_name) ? "checked" : ""}>${dropdown_name}<span class="material">arrow_forward_ios</span></label>
+                    <div>${sideBarItems(dropdown_data)}</div>
+                </div>`
+            })
+            return result
+        }
+
         function loadSideBar() {
-            const nav = document.querySelector("nav");
             fetch("assets/routes.json")
                 .then(res => res.json())
                 .then(islands => {
-                    for (const [name, content] of Object.entries(islands)) {
-                        nav.insertAdjacentHTML("beforeend",
-                            `<div id="${name}">
-                                ${content.map(dropdown => {
-                                return `
-                                        <div class="dropdown" id="${routeString(dropdown.title)}">
-                                            <label><input type="checkbox" ${currentRecipe.substr(1).split("/")[0] == routeString(dropdown.title) ? "checked" : ""}>${dropdown.title}<span class="material">arrow_forward_ios</span></label>
-                                            <div>
-                                                ${dropdown.options.map(recipe => {
-                                    return `<button id="${routeString(recipe)}" onclick="openOption(this)" ${currentRecipe.split("/")[1] == routeString(recipe) ? "class=\"selected\"" : ""}>${recipe}</button>`
-                                }).join("")}
-                                            </div>
-                                        </div>
-                                    `
-                            }).join("")}
-                            </div>`
-                        )
-                    }
-                });
+                    islands.forEach(section => {
+                        for (const [section_name, section_data] of Object.entries(section)) {
+                            document.querySelector("nav").insertAdjacentHTML("beforeend",`<div id="${section_name}_parent">${sideBarItems(section_data)}</div>`)
+                        }
+                    })
+                })
+        }
+
+        function updatePage() {
+            // custom behavior goes here
+            document.getElementById("frame").src = "recipe.html";
         }
 
         function selectOption(recipe) {
-            document.getElementById(recipe[0]).children[0].children[0].checked = true;
-            document.getElementById(recipe[1]).classList.add("selected");
+            let divs = recipe
+            let goal = divs.pop()
+            divs.shift()
+            divs.forEach(element => {
+                document.getElementById(element).children[0].children[0].checked = true;
+            });
+            document.getElementById(goal).classList.add("selected");
         }
 
         function deselectOption(recipe) {
-            if (recipe != '') top.document.getElementById(recipe).classList.remove("selected");
+            if (top.document.getElementById(recipe).classList.contains("selected"))
+            top.document.getElementById(recipe).classList.remove("selected");
         }
 
         function openOption(element) {
-            let newUrl = element.id.split("/").length > 1 ? element.id : element.parentElement.parentElement.id + "/" + element.id;
+            let find_element = document.getElementById(element.id.split('_')[0])
+            let newUrl = `${find_element.id}`
+            let tempElement = find_element.parentElement
+            while (true) {
+                if (tempElement.id.split("_")[1] == "parent") {
+                    newUrl = `${tempElement.id.split("_")[0]}/${newUrl}`;
+                    break;
+                }
+                newUrl = tempElement.id == "" ? newUrl : `${tempElement.id}/${newUrl}`;
+                tempElement = tempElement.parentElement
+            }
+
             if (newUrl != currentRecipe) {
-                deselectOption(currentRecipe.split("/")[1]);
+                if (currentRecipe != "") deselectOption(currentRecipe.split("/")[currentRecipe.split("/").length - 1]);
                 currentRecipe = newUrl;
                 selectOption(currentRecipe.split("/"));
-                window.history.pushState({}, "", "?" + newUrl);
-                document.getElementById("frame").src = "recipe.html";
+                window.history.pushState(null, "", "?" + newUrl);
+                updatePage()
             }
         }
 
-        var currentRecipe = window.location.search;
+        var currentRecipe = decodeURI(window.location.search).substr(1);
         loadSideBar();
-        if (currentRecipe.length > 1) {
-            document.getElementById("frame").src = "recipe.html";
-        }
+        if (currentRecipe.length > 1) updatePage();
+
         addEventListener("popstate", (event) => {
-            deselectOption(currentRecipe.split("/")[1]);
-            currentRecipe = window.location.search;
-            selectOption(currentRecipe.substr(1).split("/"));
-            document.getElementById("frame").contentWindow.location.reload();
+            if (currentRecipe.split("/")[currentRecipe.split("/").length - 1] != "" && currentRecipe.length > 1)
+            deselectOption(currentRecipe.split("/")[currentRecipe.split("/").length - 1]);
+
+            currentRecipe = decodeURI(window.location.search).substr(1);
+
+            if (currentRecipe.split("/")[currentRecipe.split("/").length - 1] != "" && currentRecipe.length > 1) {
+                selectOption(currentRecipe.split("/"));
+                updatePage()
+            }
         });
     </script>
 </body>

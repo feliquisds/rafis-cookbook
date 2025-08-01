@@ -1,28 +1,192 @@
-{
-    "main": [
-        {
-            "title" : "Informação útil na cozinha",
-            "options" : [
-                "Unidades de medida",
-                "A importância das vírgulas",
-                "A Escala Rafael de Dificuldade"
-            ]
-        }
-    ],
-    "recipes": [
-        {
-            "title" : "Bebidas sem álcool",
-            "options" : [
-                "Refresco de hibisco",
-                "Chocolate quente",
-                "Limonada de limão-siciliano"
-            ]
-        },
-        {
-            "title" : "Doces e sobremesas",
-            "options" : [
-                "Bolo mármore de banana e chocolate"
-            ]
-        }
-    ]
-}
+[
+    {
+        "Guia": [
+            "Glossário",
+            {
+                "Informação útil na cozinha": [
+                    "A importância das vírgulas",
+                    "Aquafaba e coquetéis com clara de ovo",
+                    "Como escolher um corte de carne",
+                    "Como esterilizar potes e garrafas",
+                    "Como fazer a macarronada perfeita",
+                    "Como fazer caramelo",
+                    "Como fazer seus próprios tomates pelados",
+                    "Como lavar alho-poró",
+                    "Facas",
+                    "Fritura por imersão",
+                    "Mise en place",
+                    "Os três tipos de fogões",
+                    "Panelas de ferro fundido",
+                    "Panelas de pressão",
+                    "Tipos de batatas",
+                    "Tipos de baunilha",
+                    "Tipos de farinha de trigo",
+                    "Unidades de medida"
+                ]
+            }
+        ]
+    },
+    {
+        "Receitas": [
+            {
+                "Temperos": [
+                    "Baharat (pimenta síria)",
+                    "Dry rub para carne bovina",
+                    "Dry rub para carne suína",
+                    "Dry rub para costelinhas barbecue",
+                    "Garam masala"
+                ]
+            },
+            {
+                "Condimentos": [
+                    "Cebolete",
+                    "Chili crisp (crocante de pimenta)",
+                    "Chimichurri",
+                    "Geleia de cebola e frutas secas",
+                    "Guacamole",
+                    "Pesto alla Trapanese",
+                    "Pesto de salsinha e nozes",
+                    "Pesto genovês",
+                    "Pico de gallo",
+                    "Sweet chili sauce (molho de pimenta doce)",
+                    "Tzatziki (molho de iogurte, pepino e ervas)"
+                ]
+            },
+            {
+                "Ingredientes": [
+                    "Buttermilk",
+                    "Calda de açúcar (simple syrup)",
+                    "Calda de gengibre",
+                    "Calda de maracujá",
+                    "Caldo de verduras, carne ou galinha",
+                    "Crème fraîche ou sour cream",
+                    "Iogurte grego",
+                    "Pimentões assados",
+                    "Purê de abóbora"
+                ]
+            },
+            {
+                "Conservas e fermentados": [
+                    "Chucrute",
+                    "Conserva de berinjela",
+                    "Conserva de chuchu",
+                    "Conserva de rabanetes",
+                    "Conserva ultra-picante de pepino",
+                    "Picles pão e manteiga",
+                    "Vinho de sobremesa de jabuticaba"
+                ]
+            },
+            {
+                "Bebidas": [
+                    "Coquetéis",
+                    {
+                        "Bebidas alcoólicas": [
+                            "Black Sunburst",
+                            "Caipirinha Dourada",
+                            "Cooler de melancia",
+                            "Mercado de Marrakech",
+                            "Purple Screwdriver"
+                        ]
+                    },
+                    {
+                        "Licores e infusões": [
+                            "Gengibre Dourado",
+                            "Licor cremoso de coco",
+                            "Licor de beterraba",
+                            "Licor de café",
+                            "Licor de coco e chocolate",
+                            "Licor de damasco e cardamomo",
+                            "Licor de kiwi",
+                            "Licor de laranja e alecrim",
+                            "Licor de pera",
+                            "Licor Provençal",
+                            "Vodka de pimenta-do-reino"
+                        ]
+                    },
+                    {
+                        "Bebidas sem álcool": [
+                            "Agua fresca de tamarindo",
+                            "Café de olla",
+                            "Limonada de hibisco",
+                            "O melhor suco de limão-siciliano",
+                            "Refresco de hibisco",
+                            "Sweet tea (chá gelado ao estilo dos EUA)"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Pães": [
+                    "Brioche",
+                    "Chalá",
+                    "Focaccia básica",
+                    "Pain de mie (pão de forma francês)",
+                    "Pogacha",
+                    "Pretzels",
+                    "Pão de batata russo",
+                    "Pão de buttermilk",
+                    "Pão doce com passas",
+                    "Pão italiano básico",
+                    "Pão rústico crocante"
+                ]
+            },
+            {
+                "Sopas": [
+                    "Bisque de tomate",
+                    "Caldo tlalpeño",
+                    "Caldo verde",
+                    "Gazpacho",
+                    "Potage Saint-Germain (sopa francesa de ervilhas)",
+                    "Sopa cock-a-leekie",
+                    "Sopa cremosa de milho",
+                    "Sopa de abóbora com sálvia",
+                    "Sopa de alho-poró e grão de bico",
+                    "Sopa de lentilhas vermelhas com óleo de hortelã",
+                    "Sopa de lentilhas",
+                    "Sopa de tomates assados"
+                ]
+            },
+            {
+                "Saladas": [
+                    {
+                        "Molhos de salada": [
+                            "Molho Caesar",
+                            "Vinaigrette italiano",
+                            "Vinaigrettes básicos"
+                        ]
+                    },
+                    "Panzanella",
+                    "Salada assada de berinjela e tomate cereja",
+                    "Salada crocante de pera com jiló",
+                    "Salada grega",
+                    "Salada Lucali"
+                ]
+            },
+            {
+                "Aperitivos": [
+                    {
+                        "Patês, dips, e outras coisas para comer com pão": [
+                            "Baba ghanoush",
+                            "Brandade",
+                            "Caponata siciliana",
+                            "Dip de alcachofra e espinafre",
+                            "Dip de carne com cream cheese",
+                            "Hummus ou Hommus",
+                            "Muhammara",
+                            "Patê de fígado vegetariano",
+                            "Patê de fígado",
+                            "Ricota batida"
+                        ]
+                    },
+                    "Asinhas de frango crocantes e picantes",
+                    "Batata-doce com especiarias e iogurte de alho",
+                    "Biscoitinhos de queijo",
+                    "Bolinhas de queijo gorgonzola",
+                    "Brie en crôute",
+                    "Pimentões agridoces",
+                    "Rolinhos de pimentão assado com salada de atum italiana"
+                ]
+            }
+        ]
+    }
+]

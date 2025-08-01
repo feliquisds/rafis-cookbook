@@ -1,13 +1,11 @@
 {
     "title": "",
-    "description" : "",
-    "amount" : "",
-    "time" : "",
-    "ingredients" : {
-        "count" : 1,
-        "sections" : []
-    },
-    "special" : null,
-    "steps" : [],
-    "notes" : null
+    "description": "",
+    "amount": "",
+    "time": "",
+    "difficulty": "",
+    "custom": false,
+    "ingredients": [],
+    "special": "",
+    "steps": []
 }

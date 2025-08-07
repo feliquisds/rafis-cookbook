@@ -159,13 +159,16 @@ nav {
     scrollbar-color: var(--background) var(--navbar);
 }
 
-nav > a {
+nav > button {
     text-align: center;
     color: black;
     text-decoration: none;
     font-family: Garamond;
     font-size: x-large;
     max-width: 200px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 nav > * {
@@ -303,7 +306,7 @@ nav > div > *:not(:last-child) {
     transform: scale(98%);
 }
 
-.dropdown > div > .selected {
+.dropdown > div > .selected, .selected {
     background-color: var(--navbar-button-selected);
     border-radius: 15px;
 }
@@ -510,4 +513,11 @@ search:has(#searchbox:focus), search:has(#results:hover) {
     margin-bottom: 10px;
     color: var(--checked);
     font-size: small;
+}
+
+
+
+/* generic text pages */
+.generic > p {
+    margin-bottom: 10px;
 }

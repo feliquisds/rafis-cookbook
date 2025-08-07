@@ -14,9 +14,9 @@
             <img src="assets/images/spine.jpg" id="spine">
         </div>
         <nav>
-            <a href="./">
+            <button onclick="backToHome()">
                 <h1>Rafi's cookbook</h1>
-            </a>
+            </button>
             <search>
                 <input type="text" id="searchbox" placeholder="Pesquisar" onkeyup="search(this.value)">
                 <div id="results">
@@ -141,7 +141,10 @@
         }
 
         function updatePage() {
-            // custom behavior goes here
+            if (currentRecipe == "") {
+                document.getElementById("frame").src = "main.html"
+                return
+            }
             document.getElementById("frame").src = "recipe.html";
         }
 
@@ -152,6 +155,7 @@
             divs.forEach(element => {
                 document.getElementById(element).children[0].children[0].checked = true;
             });
+            console.log(goal)
             document.getElementById(goal).classList.add("selected");
         }
 
@@ -180,6 +184,12 @@
                 window.history.pushState(null, "", "?" + newUrl);
                 updatePage()
             }
+        }
+
+        function backToHome() {
+            window.history.pushState(null, "", "/");
+            currentRecipe = ""
+            updatePage()
         }
 
         var currentRecipe = decodeURI(window.location.search).substr(1);

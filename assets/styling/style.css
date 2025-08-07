@@ -13,6 +13,7 @@
     --print-hover: #4d7825;
     --print-focus: #2d5803;
     --checked: #bda884;
+    --sidebar-toggle: #cb344d;
 }
 
 * {
@@ -85,8 +86,9 @@ body {
     background-color: var(--background);
 }
 
-iframe {
+iframe, .maincontent {
     width: 100%;
+    height: 100vh;
 }
 
 h1, h2 {
@@ -96,16 +98,65 @@ h1, h2 {
 
 
 /* navigation */
+.sidebar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    transition: 300ms;
+    z-index: 2;
+}
+
+#sidebar_toggle {
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 100%;
+    height: 55px;
+    width: 60px;
+    background-color: var(--navbar);
+    border-radius: 0 20px 20px 0;
+    padding: 5px;
+}
+
+#sidebar_toggle > div > input, .overlay > input {
+    display: none;
+}
+
+#sidebar_toggle > div > h2 {
+    color: var(--text);
+    text-align: center;
+    margin: 0;
+    transition: 200ms;
+}
+
+#sidebar_toggle > div {
+    background-color: var(--navbar-button);
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    transition: 200ms;
+    align-content: center;
+}
+
+#sidebar_toggle > div:hover {
+    background-color: var(--navbar-button-hover);
+}
+
+#sidebar_toggle:has(> div > input:active) > div:hover {
+    background-color: var(--navbar-button-focus);
+    transform: scale(98%);
+}
+
 nav {
+    position: relative;
     padding: 2rem 1rem 1rem 1rem;
     background-color: var(--navbar);
     height: 100vh;
-    width: 20rem;
-    border-radius: 0 30px 30px 0;
-    z-index: 1;
+    min-width: 250px;
+    width: 250px;
     justify-items: center;
-    overflow-x: hidden;
-    scrollbar-width: none;
+    overflow-y: scroll;
+    scrollbar-color: var(--background) var(--navbar);
 }
 
 nav > a {
@@ -114,6 +165,7 @@ nav > a {
     text-decoration: none;
     font-family: Garamond;
     font-size: x-large;
+    max-width: 200px;
 }
 
 nav > * {
@@ -126,6 +178,48 @@ nav > div:not(:last-child) {
 
 nav > div > *:not(:last-child) {
     margin-bottom: 5px;
+}
+
+.overlay {
+    pointer-events: none;
+    z-index: 1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #0000;
+    transition: 300ms;
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+    }
+    
+    .sidebar:has(#sidebar_toggle > div > input:checked) {
+        transform: translateX(0);
+    }
+
+    #sidebar_toggle > div:has(> input:checked) > h2 {
+        transform: rotate(180deg);
+    }
+
+    .mainbody:has(#sidebar_toggle > div > input:checked) > .overlay {
+        background-color: #0003;
+        pointer-events: all;
+    }
+
+    #sidebar_toggle {
+        display: block;
+    }
+
+    #spine {
+        width: 30px;
+    }
+
+    body:not(.mainbody) {
+        padding-top: 75px;
+    }
 }
 
 
@@ -240,7 +334,8 @@ nav > div > *:only-child {
 /* recipe header */
 .recipe-header > div {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
 }
 
 .recipe-header > div > div:not(:last-child) {
@@ -255,6 +350,7 @@ nav > div > *:only-child {
     border-radius: 20px;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .chip > span {

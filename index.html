@@ -9,22 +9,34 @@
 </head>
 
 <body class="mainbody">
-    <div>
-        <img src="assets/images/spine.jpg" id="spine">
-    </div>
-    <nav>
-        <a href="./">
-            <h1>Rafi's cookbook</h1>
-        </a>
-        <search>
-            <input type="text" id="searchbox" placeholder="Pesquisar" onkeyup="search(this.value)">
-            <div id="results">
-                <p>O que tem em mente?</p>
+    <div class="sidebar">
+        <div>
+            <img src="assets/images/spine.jpg" id="spine">
+        </div>
+        <nav>
+            <a href="./">
+                <h1>Rafi's cookbook</h1>
+            </a>
+            <search>
+                <input type="text" id="searchbox" placeholder="Pesquisar" onkeyup="search(this.value)">
+                <div id="results">
+                    <p>O que tem em mente?</p>
+                </div>
+            </search>
+        </nav>
+        <label id="sidebar_toggle">
+            <div>
+                <h2 class="material">arrow_forward_ios</h2>
+                <input type="checkbox">
             </div>
-        </search>
-    </nav>
+        </label>
+    </div>
 
-    <iframe src="main.html" frameborder="0" id="frame"></iframe>
+    <label class="overlay"><input type="button" onclick="document.querySelector('#sidebar_toggle > div > input').checked = false"></label>
+
+    <div class="maincontent">
+        <iframe src="main.html" frameborder="0" id="frame"></iframe>
+    </div>
 
     <script>
         function searchableString(str) {

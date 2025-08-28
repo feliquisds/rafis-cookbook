@@ -35,10 +35,11 @@
     <label class="overlay"><input type="button" onclick="document.querySelector('#sidebar_toggle > div > input').checked = false"></label>
 
     <div class="maincontent">
-        <iframe src="main.html" frameborder="0" id="frame"></iframe>
+        <iframe src="generic.html" frameborder="0" id="frame"></iframe>
     </div>
 
     <script>
+        const overrides = ['Guia', 'Extra', 'Coquetéis']
         function searchableString(str) {
             str = str.toLowerCase();
             if (str.search(/[\xC0-\xFF]/g) > -1) {
@@ -142,9 +143,17 @@
 
         function updatePage() {
             if (currentRecipe == "") {
-                document.getElementById("frame").src = "main.html"
+                document.getElementById("frame").src = "generic.html"
                 return
             }
+
+            for (let element of currentRecipe.split("/")) {
+                if (overrides.includes(element)) {
+                    document.getElementById("frame").src = "generic.html"
+                    return
+                }
+            }
+
             document.getElementById("frame").src = "recipe.html";
         }
 
@@ -155,7 +164,6 @@
             divs.forEach(element => {
                 document.getElementById(element).children[0].children[0].checked = true;
             });
-            console.log(goal)
             document.getElementById(goal).classList.add("selected");
         }
 

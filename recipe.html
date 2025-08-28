@@ -9,45 +9,88 @@
 </head>
 
 <body>
+    <div id="qrcode"></div>
     <h1 id="title"></h1>
 
     <div class="recipe-header">
         <div>
-            <div class="chip"><span class="material">room_service</span><p id="difficulty"></p></div>
+            <div class="chip" id="difficulty"></div>
             <div class="chip"><span class="material">room_service</span><p id="amount"></p></div>
             <div class="chip"><span class="material">schedule</span><p id="time"></p></div>
-            <button class="chip print"><span class="material">print</span><p>Imprimir</p></button>
+            <button class="chip print" onclick="print()"><span class="material">print</span><p>Imprimir</p></button>
         </div>
-        <p id="description"></p>
+        <div id="description">
+        </div>
     </div>
 
     <div class="wavy-line"></div>
 
+    <h2>Ingredientes</h2>
     <div id="ingredients">
-        <h2>Ingredientes</h2>
     </div>
 
     <div class="wavy-line"></div>
 
+    <h2>Modo de preparo</h2>
     <div id="steps">
-        <h2>Modo de preparo</h2>
     </div>
 
-    <script>
+    <script type="text/javascript" src="./assets/qrcode.min.js"></script>
+    <script type="module">
+        import {marked} from "./assets/marked.esm.js"
+
         fetch(`./${decodeURI(top.window.location.search.substr(1))}.json`)
             .then(res => res.json())
             .then(json => {
                 document.getElementById("title").innerHTML = json.title;
-                document.getElementById("description").innerHTML = json.description;
+                document.getElementById("description").insertAdjacentHTML("beforeend", json.description.map(entry => {
+                    return `${marked.parse(entry)}`
+                }).join(""));
                 document.getElementById("amount").innerHTML = json.amount;
                 document.getElementById("time").innerHTML = json.time;
 
-                document.getElementById("difficulty").innerHTML = json.difficulty == "easy" ?
-                "Fácil" : (json.difficulty == "medium" ? "Médio" : "Difícil");
+                if (json.difficulty == "easy") {
+                    document.getElementById("difficulty").innerHTML = `
+                        <div>
+                            <span class="material">star</span>
+                        </div>
+                        <p id="difficulty">Fácil</p>
+                    `
+                    document.getElementById("difficulty").classList.add("easy")
+                }
+                else if (json.difficulty == "medium") {
+                    document.getElementById("difficulty").innerHTML = `
+                        <div>
+                            <span class="material">star</span>
+                            <span class="material">star</span>
+                        </div>
+                        <p id="difficulty">Médio</p>
+                    `
+                    document.getElementById("difficulty").classList.add("medium")
+                }
+                else {
+                    document.getElementById("difficulty").innerHTML = `
+                        <div>
+                            <span class="material">star</span>
+                            <span class="material">star</span>
+                            <span class="material">star</span>
+                        </div>
+                        <p id="difficulty">Difícil</p>
+                    `
+                    document.getElementById("difficulty").classList.add("hard")
+                }
 
                 const ingredients = document.getElementById("ingredients");
                 if (json.custom) {
-                    //TODO
+                    for (const [key, value] of Object.entries(json.ingredients)) {
+                        ingredients.insertAdjacentHTML("beforeend",
+                            `<div class="section">
+                                <h3>${value["title"]}</h3>
+                                ${value["items"].map(element => {
+                                    return `<label><input type="checkbox"><span>${element}</span></label>`
+                                }).join("")}
+                            </div>`);
+                    }
                 }
                 else {
                     ingredients.insertAdjacentHTML("beforeend", `<div class="section"></div>`);
@@ -60,9 +103,8 @@
 
                 if (json.special != "") {
                     ingredients.insertAdjacentHTML("beforeend",
-                        `<div id="special">
-                                        <h3>Equipamento especial:</h3>
-                                        <p>${json.special}</p>
+                        `<div class="section" id="special">
+                                        <p><b>Equipamento especial:  </b>${json.special}</p>
                                     </div>`
                     )
                 }
@@ -70,12 +112,14 @@
                 let count = 1;
                 json.steps.forEach(element => {
                     document.getElementById("steps").insertAdjacentHTML("beforeend",
-                        `<div><h2>${count}.</h2><p>${element}</p></div>`
+                        `<div><h2>${count}.</h2>${marked.parse(element)}</div>`
                     )
                     count += 1;
                 });
             }
             );
+        
+        new QRCode(document.getElementById("qrcode"), top.window.location.href)
     </script>
 </body>
 

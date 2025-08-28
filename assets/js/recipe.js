@@ -1,6 +1,6 @@
 import { marked } from "./marked.esm.js"
 
-fetch(`./${decodeURI(top.window.location.search.substr(1))}.json`)
+fetch(`/data/${decodeURI(top.window.location.search.substr(1))}.json`)
     .then(res => res.json())
     .then(json => {
         document.getElementById("title").innerHTML = json.title;

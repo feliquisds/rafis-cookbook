@@ -5,26 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generic</title>
-    <link rel="stylesheet" href="assets/styling/style.css">
+    <link rel="stylesheet" href="/assets/style.css">
 </head>
 
 <body class="generic">
-
-    <script type="module">
-        import {marked} from "./assets/marked.esm.js"
-        const body = document.querySelector('.generic')
-        const currentPage = decodeURI(top.window.location.search.substr(1))
-
-        if (currentPage != "")
-        fetch(`./${currentPage}.md`)
-            .then(res => res.text())
-            .then(text => body.innerHTML = marked.parse(text))
-        
-        else
-        fetch(`./Extra/Página principal.md`)
-            .then(res => res.text())
-            .then(text => body.innerHTML = marked.parse(text))
-    </script>
+    <script type="module" src="/assets/js/generic.js"></script>
 </body>
 
 </html>

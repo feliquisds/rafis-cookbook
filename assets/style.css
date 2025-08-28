@@ -30,12 +30,12 @@
 
 @font-face {
     font-family: Garamond;
-    src: url(garamond.ttf) format('ttf');
+    src: url(./fonts/garamond.ttf) format('ttf');
 }
 
 @font-face {
     font-family: Material;
-    src: url(material.woff2) format('woff2');
+    src: url(./fonts/material.woff2) format('woff2');
     font-display: block;
 }
 

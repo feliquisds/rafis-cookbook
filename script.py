@@ -1,7 +1,10 @@
 import json
 import os
 
+# items to stay in markdown format
 overrides = ["Guia", "Extra", "Coquetéis"]
+
+# items to not be added to the routes json
 skips = ["Página principal"]
 
 # get path of the script
@@ -10,6 +13,7 @@ path = os.path.abspath(__file__)[:(len(os.path.abspath(__file__))) - (os.path.ab
 # list of "routes" that javascript will use to find files
 routes = []
 
+# recipe class for easier building of an object
 class recipe:
     title: str
     description: list
@@ -37,6 +41,7 @@ def translateRecipe(name, lines):
     obj.title = name
     index = 0
 
+    # find middle point, right after ingredients list but before steps
     for line in lines:
         x = line.strip()
         if len(x) != 0:
@@ -83,6 +88,7 @@ def translateRecipe(name, lines):
     return json.dumps(obj.__dict__, ensure_ascii=False)
 
 def prepareRecipe(file, file_path):
+    # get the destiny path and remove the ordered numbers
     new_path = f"{path}data\\{"\\".join(file_path)}\\"
     split_path = new_path.split("\\")
     for i in range(len(split_path)):
@@ -95,7 +101,6 @@ def prepareRecipe(file, file_path):
     x = open(file, encoding="utf-8")
 
     markdownfile = False
-    overrides = ["Guia", "Extra", "Coquetéis"]
     for i in overrides:
         if i in file_path or i in name:
             markdownfile = True
@@ -116,6 +121,9 @@ def prepareRecipe(file, file_path):
 def routeSetup(path):
     name = f'{os.path.basename(path).split(" - ")[1] if len(os.path.basename(path).split(" - ")) > 1 else os.path.basename(path)}'
     d = {name: []}
+
+    # if path is a directory, add it as an object and look inside the directory for more things
+    # if path is a file, add it to the routes json, unless it is part of the "skips" array, then return False
     if os.path.isdir(path):
         for i in os.listdir(path):
             temp = routeSetup(f'{path}\\{i}')

@@ -48,7 +48,7 @@ fetch(`/data/${decodeURI(top.window.location.search.substr(1))}.json`)
                     `<div class="section">
                                 <h3>${value["title"]}</h3>
                                 ${value["items"].map(element => {
-                        return `<label><input type="checkbox"><span>${element}</span></label>`
+                        return `<label><input type="checkbox">${marked.parse(element)}</label>`
                     }).join("")}
                             </div>`);
             }
@@ -57,7 +57,7 @@ fetch(`/data/${decodeURI(top.window.location.search.substr(1))}.json`)
             ingredients.insertAdjacentHTML("beforeend", `<div class="section"></div>`);
             json.ingredients.forEach(element => {
                 document.getElementsByClassName("section")[0].insertAdjacentHTML("beforeend",
-                    `<label><input type="checkbox"><span>${element}</span></label>`
+                    `<label><input type="checkbox">${marked.parse(element)}</label>`
                 )
             })
         }

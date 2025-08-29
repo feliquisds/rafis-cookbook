@@ -423,9 +423,13 @@ nav > div > *:only-child {
     accent-color: var(--highlight);
 }
 
-#ingredients > div > label > input:checked + span {
+#ingredients > div > label > input:checked + p {
     color: var(--checked);
     text-decoration: line-through;
+}
+
+#ingredients > div > label > p {
+    display: inline;
 }
 
 #ingredients > .section:not(:last-child) {

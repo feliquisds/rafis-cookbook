@@ -29,7 +29,7 @@ function searchableString(str) {
 }
 
 function findEntries(section_data, keyword, array = []) {
-    result = array
+    let result = array
     section_data.forEach(entry => {
         let temp = Object.entries(entry)[0]
         if (typeof entry == "string") {
@@ -159,7 +159,7 @@ function backToHome() {
     updatePage()
 }
 
-var currentRecipe = decodeURI(window.location.search).substr(1);
+let currentRecipe = decodeURI(window.location.search).substr(1);
 loadSideBar();
 if (currentRecipe.length > 1) updatePage();
 

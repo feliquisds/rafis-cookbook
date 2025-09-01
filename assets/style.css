@@ -490,6 +490,7 @@ search:has(#searchbox:focus), search:has(#results:hover) {
 }
 
 #searchbox {
+    font-size: medium;
     width: 100%;
     padding: 10px 15px;
     background-color: var(--navbar-button);

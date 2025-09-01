@@ -26,6 +26,11 @@
     box-sizing: border-box;
     color: var(--text);
     scrollbar-color: var(--navbar) var(--background);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+    font-size: medium;
 }
 
 @font-face {
@@ -167,13 +172,16 @@ nav {
 nav > button {
     text-align: center;
     color: black;
-    text-decoration: none;
-    font-family: Garamond;
-    font-size: x-large;
     max-width: 200px;
     background-color: transparent;
     border: none;
     cursor: pointer;
+    font-size: x-large;
+    text-decoration: none;
+}
+
+nav > button > h1 {
+    font-family: Garamond, 'Times New Roman', Times, serif;
 }
 
 nav > * {
@@ -375,7 +383,6 @@ nav > div > *:only-child {
 
 .print {
     border: none;
-    font-size: medium;
     background-color: var(--print);
     transition: 200ms;
     cursor: pointer;
@@ -440,8 +447,8 @@ nav > div > *:only-child {
     margin-bottom: 10px;
 }
 
-#special > p > b {
-    font-size: 1.25em;
+#special > p > b:first-child {
+    font-size: large;
 }
 
 
@@ -530,7 +537,6 @@ search:has(#searchbox:focus), search:has(#results:hover) {
 #results > p {
     margin-bottom: 10px;
     color: var(--search);
-    font-size: small;
 }
 
 

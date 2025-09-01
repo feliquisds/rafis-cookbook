@@ -30,7 +30,7 @@
 }
 
 button {
-    font-size: medium;
+    font-size: 1rem;
 }
 
 @font-face {
@@ -176,7 +176,7 @@ nav > button {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    font-size: x-large;
+    font-size: 1.5rem;
     text-decoration: none;
 }
 
@@ -448,7 +448,7 @@ nav > div > *:only-child {
 }
 
 #special > p > b:first-child {
-    font-size: large;
+    font-size: 1.2rem;
 }
 
 
@@ -490,7 +490,7 @@ search:has(#searchbox:focus), search:has(#results:hover) {
 }
 
 #searchbox {
-    font-size: medium;
+    font-size: 1rem;
     width: 100%;
     padding: 10px 15px;
     background-color: var(--navbar-button);

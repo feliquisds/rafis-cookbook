@@ -157,6 +157,7 @@ function backToHome() {
     window.history.pushState(null, "", "/");
     currentRecipe = ""
     updatePage()
+    deselectOption(top.document.querySelector(".selected").id)
 }
 
 let currentRecipe = decodeURI(window.location.search).substr(1);

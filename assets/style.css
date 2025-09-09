@@ -27,7 +27,7 @@
     box-sizing: border-box;
     color: var(--text);
     scrollbar-color: var(--navbar) var(--background);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Arbutus Slab', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 button {
@@ -45,6 +45,11 @@ li > * {
 @font-face {
     font-family: 'IM Fell Double Pica';
     src: url(./fonts/IMFellDoublePica.ttf) format(truetype);
+}
+
+@font-face {
+    font-family: 'Arbutus Slab';
+    src: url(./fonts/ArbutusSlab.ttf) format(truetype);
 }
 
 @font-face {
@@ -523,6 +528,7 @@ search:has(#searchbox:focus), search:has(#results:hover) {
     border-radius: 20px;
     height: 2.75rem;
     transition: 200ms;
+    border-bottom: 5px solid var(--highlight);
 }
 
 #searchbox:hover:not(:focus, :active) {
@@ -561,6 +567,7 @@ search:has(#searchbox:focus), search:has(#results:hover) {
 }
 
 #results > p {
+    margin-top: 5px;
     margin-bottom: 10px;
     color: var(--search);
 }
@@ -592,6 +599,27 @@ ul > li:not(:last-child) {
 
 #platform-links > a {
     margin-bottom: 10px;
+}
+
+
+
+/* self portrait on main page */
+.self-portrait {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.self-portrait > img {
+    width: 100%;
+    max-width: 200px;
+}
+
+.self-portrait > p {
+    color: #000;
 }
 
 

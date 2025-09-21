@@ -1,0 +1,3 @@
+# Mise en place
+
+Possivelmente, o conselho mais importante nesta seção. Antes de ligar o fogão, tirar as panelas do armário, untar a fôrma do bolo, ou o que quer que a receita peça, tenha todos os ingredientes separados, medidos, e picados. Assim, enquanto cozinha, sua atenção pode estar cem por cento focada na tarefa sendo realizada: não corre o risco de queimar a cebola no fogão enquanto procura o purê de tomate no armário.

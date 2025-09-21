@@ -1,0 +1,15 @@
+# Fritura por imersão
+
+Se você nunca fritou algo antes, é importante saber como: queimaduras com óleo quente são extremamente perigosas, e caso a gordura pegue fogo (o que é raro, mas pode acontecer) é um risco de incêndio tremendo.
+
+- Use uma panela ou frigideira apropriada e estável. **JAMAIS** encha a panela mais de ⅔ com óleo: corre o risco de transbordar e começar um incêndio. **JAMAIS** tampe uma panela em que está fritando algo: também aumenta o risco de transbordar.
+
+- Se a sua gordura pegar fogo, **não entre em pânico,** e acima de tudo, **não jogue água**. Em contato com a gordura quente, a água se torna vapor e expande, jorrando óleo fervente (e pegando fogo) para todo lado. Se o seu óleo pegar fogo, tampe a panela ou frigideira com uma tampa: isso corta o fornecimento de oxigênio à chama e a apaga. Se não tiver uma tampa, uma assadeira funciona igualmente bem. Se tiver acesso a um extintor de incêndio, certifique-se de que ele é de pó químico ou gás carbônico, e não de água.
+
+- **JAMAIS** jogue, arremesse ou derrube a comida no óleo: aumenta o risco de respingos, e com eles, queimaduras e incêndios. Coloque a comida que você está fritando em uma escumadeira e cuidadosamente abaixe-a no óleo para evitar respingos. Se estiver se sentindo particularmente autoconfiante, pegue a comida com os dedos indicador e polegar e abaixe-a lentamente na gordura: solte quando estiver quase completamente submersa, tomando cuidado para não mergulhar os dedos no óleo (já me aconteceu algumas vezes e não é legal). Lembre-se: o óleo consegue perceber que você tem medo dele, e vai se aproveitar disso.
+
+- Evite colocar alimentos muito molhados ou úmidos no óleo. Na medida em que a água evapora, o gás escapa violentamente e causa respingos, que podem levar a queimaduras e/ou incêndios. Se estiver fritando algo, certifique-se de que está bem seco antes de colocar no óleo. Protetores de fritura são fáceis de achar em lojas de artigos de cozinha: são telas de metal que evitam que respingos voem para fora da panela mas ainda permitem fluxo de ar.
+
+- O óleo de fritura deve ficar entre 160 e 190°. Mais do que isso e você corre o risco dele pegar fogo, menos do que isso e a comida vai absorver o óleo antes de conseguir dourar e ficar molenga e engordurada. Se não tiver um termômetro para avaliar a temperatura, há alguns métodos para saber se seu óleo está quente o suficiente: eu gosto de colocar um palito de fósforo dentro da panela sobre fogo alto e, quando ele se acende, sei que está pronto para fritar.
+
+- Não coloque muitas coisas de uma vez no óleo: a temperatura vai cair muito rapidamente e a comida vai acabar molenga e engordurada. Esse instinto é algo que só se consegue com prática, mas é óbvio quando você colocou comida demais porque o borbulhar da gordura enfraquece.

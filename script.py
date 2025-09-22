@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 
 # items to stay in markdown format
 overrides = ["Guia", "Extra", "Coquetéis"]
@@ -147,6 +148,9 @@ def recursiveSearch(search_path, paths):
             new_path = paths.copy()
             new_path.append(item_name)
             recursiveSearch(f"{search_path}\\{item}\\", new_path)
+
+if os.path.exists(f"{path}\\data"):
+        shutil.rmtree(f"{path}\\data")
 
 for section in os.listdir(f"{path}\\input"):
     if len(section.split(".")) > 1 or section == "result": continue

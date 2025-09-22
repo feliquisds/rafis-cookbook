@@ -96,7 +96,10 @@ def prepareRecipe(file, file_path):
         split_path[i] = split_path[i].split(" - ")[-1]
     new_path = "\\".join(split_path)
 
+    # get the file name and remove the ordered numbers
     name = file.split("\\")[-1].split(".")[0]
+    name = name.split(" - ")[-1]
+    
     if not os.path.exists(new_path):
         os.makedirs(new_path)
     x = open(file, encoding="utf-8")

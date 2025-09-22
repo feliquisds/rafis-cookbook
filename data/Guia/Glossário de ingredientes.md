@@ -1,5 +1,9 @@
 # Glossário de ingredientes
 
+Nesta página, coloquei o máximo que pude lembrar de temperos e outros ingredientes usados na cozinha. Caso esteja faltando algo, por favor entre em contato pelo formulário disponível na página principal: o objetivo é que a lista seja o mais exaustiva possível. Se estiver procurando algo específico, use o comando Ctrl + F (no desktop) para abrir a busca por texto!
+
+---
+
 - **Açafrão da terra** ou **Cúrcuma**: O rizoma seco moído de *Curcuma longa*, uma planta da família do gengibre. Compartilha o nome com o açafrão verdadeiro devido ao fato que ambas tingem comidas e tecidos com uma vívida cor amarelo-alaranjada.
 
 - **Açafrão**: São os estigmas e pistilos de *Crocus sativus*, uma flor nativa ao Mediterrâneo. Açafrão é a especiaria mais cara do mundo, custando cerca de cinco mil dólares por quilo. Para produzir esse quilo, é necessário manualmente processar cerca de 150 mil flores, que requerem um espaço de 2km² para plantar.

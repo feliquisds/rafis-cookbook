@@ -132,6 +132,7 @@ function deselectOption(recipe) {
 }
 
 function openOption(element) {
+    document.querySelector('#sidebar_toggle > div > input').checked = false
     let find_element = document.getElementById(element.id.split('_')[0])
     let newUrl = `${find_element.id}`
     let tempElement = find_element.parentElement

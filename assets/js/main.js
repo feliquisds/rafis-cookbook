@@ -155,6 +155,7 @@ function openOption(element) {
 }
 
 function backToHome() {
+    document.querySelector('#sidebar_toggle > div > input').checked = false
     window.history.pushState(null, "", "/");
     currentRecipe = ""
     updatePage()

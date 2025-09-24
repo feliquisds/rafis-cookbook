@@ -8,4 +8,9 @@ Meu objetivo aqui é ensinar que qualquer um (sim, até você!) pode aprender a 
 
 Sugiro fortemente começar lendo a seção de Informação Útil na Cozinha: ela contém diversas técnicas e dicas. Se em algum momento você não souber o que é um dos ingredientes de uma receita, procure-o no <button onclick="currentRecipe = 'Guia/Glossário de ingredientes'; top.selectOption(currentRecipe.split('/')); top.window.history.pushState(null, '', '?' + currentRecipe); top.updatePage()">Glossário de Ingredientes</button>.
 
-Aproveite este livro! Se fizer alguma das receitas nele contido, ou tiver algum comentário, por favor: entre em contato via <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-Eocxt3MAtjxbUgnnLa4fTL0rin9BTnBu7qbnhIEryQT0Gg/viewform?usp=dialog" target="_blank">este formulário</a>. 
+Aproveite este livro! Se fizer alguma das receitas nele contido, ou tiver algum comentário, por favor: entre em contato via <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-Eocxt3MAtjxbUgnnLa4fTL0rin9BTnBu7qbnhIEryQT0Gg/viewform?usp=dialog" target="_blank">este formulário</a>.
+
+<div class="self-portrait">
+    <img src="/assets/img/portrait0.png">
+    <p>Um autorretrato.</p>
+</div>

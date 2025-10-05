@@ -41,6 +41,7 @@ def translateRecipe(name, lines):
     obj = recipe()
     obj.title = name
     index = 0
+    itemsDone = False
 
     # find middle point, right after ingredients list but before steps
     for line in lines:
@@ -50,8 +51,11 @@ def translateRecipe(name, lines):
                 index = lines.index(line)
     
     for line in lines:
-        if line.strip() == "" or line.strip()[-1] == "-":
+        if line.strip() == "":
             continue
+
+        elif line.strip()[-1] == "-":
+            itemsDone = True
 
         elif obj.difficulty == "":
             obj.difficulty = "easy" if line[0] == "F" else ("medium" if line[0] == "M" else "hard")
@@ -65,7 +69,7 @@ def translateRecipe(name, lines):
         elif len(line.split("Equipamento especial: ")) > 1:
             obj.special = line.split("Equipamento especial: ")[-1].strip()
 
-        elif line[0] != "-" and len(line.split("Equipamento especial: ")) < 2 and lines.index(line) < index:
+        elif line[0] != "-" and len(line.split("Equipamento especial: ")) < 2 and lines.index(line) < index and itemsDone == False:
             obj.custom = True
             x = {
                 "title": "",
@@ -73,7 +77,7 @@ def translateRecipe(name, lines):
             }
             x["title"] = line.strip()
             obj.ingredients.append(x)
-        elif line[0] == "-" and line.strip()[-1] != "-":
+        elif line[0] == "-" and line.strip()[-1] != "-" and itemsDone == False:
             if obj.custom == True:
                 obj.ingredients[-1]["items"].append(line.strip()[2:].strip())
             else:

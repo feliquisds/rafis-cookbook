@@ -88,7 +88,7 @@ Nesta página, coloquei o máximo que pude lembrar de temperos e outros ingredie
 
 - **Pimenta chipotle em adobo**: Chipotle é o nome dado a uma pimenta jalapeño defumada. Adobo é um molho agridoce, frequentemente feito à partir de tomate. Normalmente vem em pequenas latas, parecidas com as de extrato de tomate. Pode ser encontrada com facilidade na internet e congelam muito bem.
 
-- **Pimenta-da-Jamaica**: Refere-se ao fruto de *Pimenta dioica*, uma árvore nativa à Jamaica Ao contrário do que o nome sugere, ela não é nada apimentada, e seu sabor parece uma mistura de cravo, canela e noz-moscada. Tanto os frutos inteiros quanto os moídos são usados em aplicações diversas, doces e salgadas.
+- **Pimenta-da-Jamaica**: Refere-se ao fruto de *Pimenta dioica*, uma árvore nativa à Jamaica. Ao contrário do que o nome sugere, ela não é relacionada nem a pimentas vermelhas (Solanaceae) nem a pimenta-do-reino (Piperaceae): é uma parente da goiaba. Seu sabor parece uma mistura de cravo, canela e noz-moscada. Tanto os frutos inteiros quanto os moídos são usados em aplicações diversas, doces e salgadas.
 
 - **Pimenta-de-caiena**: Frutos secos e moídos de uma variedade específica de *Capsicum anuum*, a mesma espécie da maior parte das pimentas compridas. Flocos de pimenta vermelha fazem um substituto razoável, ainda mais se você os moer.
 

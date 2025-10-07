@@ -1,2 +1,5 @@
 /input
 /skip
+.rcloneignore
+inputsync.bat
+websync.bat

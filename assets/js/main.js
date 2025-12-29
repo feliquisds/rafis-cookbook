@@ -131,9 +131,14 @@ function deselectOption(recipe) {
         top.document.getElementById(recipe).classList.remove("selected");
 }
 
-function openOption(element) {
+function openOption(element, override = null) {
     document.querySelector('#sidebar_toggle > div > input').checked = false
-    let find_element = document.getElementById(element.id.split('_')[0])
+
+    var find_element
+
+    if (override != null) find_element = document.getElementById(override.split('_')[0])
+    else find_element = document.getElementById(element.id.split('_')[0])
+
     let newUrl = `${find_element.id}`
     let tempElement = find_element.parentElement
     while (true) {

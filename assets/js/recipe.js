@@ -5,7 +5,8 @@ fetch(`/data/${decodeURI(top.window.location.search.substr(1))}.json`)
     .then(json => {
         document.getElementById("title").innerHTML = json.title;
         document.getElementById("description").insertAdjacentHTML("beforeend", json.description.map(entry => {
-            return `${marked.parse(entry)}`
+            let temp = `${marked.parse(entry)}`.replaceAll("<a", "<a target=\"_blank\" ")
+            return temp
         }).join(""));
         document.getElementById("amount").innerHTML = json.amount;
         document.getElementById("time").innerHTML = json.time;

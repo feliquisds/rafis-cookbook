@@ -6,7 +6,7 @@ Originalmente, o "livro" era apenas um documento no Google Docs. Com o tempo, el
 
 Meu objetivo aqui é ensinar que qualquer um (sim, até você!) pode aprender a cozinhar. Todas as receitas nesse site foram testadas e aprovadas por mim, então meticulosamente adaptadas e traduzidas (quando necessário). 
 
-Sugiro fortemente começar lendo a seção de Informação Útil na Cozinha: ela contém diversas técnicas e dicas. Se em algum momento você não souber o que é um dos ingredientes de uma receita, procure-o no <button onclick="currentRecipe = 'Guia/Glossário de ingredientes'; top.selectOption(currentRecipe.split('/')); top.window.history.pushState(null, '', '?' + currentRecipe); top.updatePage()">Glossário de Ingredientes</button>.
+Sugiro fortemente começar lendo a seção de Informação Útil na Cozinha: ela contém diversas técnicas e dicas. Se em algum momento você não souber o que é um dos ingredientes de uma receita, procure-o no <button onclick="top.openOption(null, 'Glossário de ingredientes_redirect')">Glossário de Ingredientes</button>.
 
 Aproveite este livro! Se fizer alguma das receitas nele contido, ou tiver algum comentário, por favor: entre em contato via <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-Eocxt3MAtjxbUgnnLa4fTL0rin9BTnBu7qbnhIEryQT0Gg/viewform?usp=dialog" target="_blank">este formulário</a>.
 

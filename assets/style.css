@@ -172,7 +172,7 @@ h2 {
     display: none;
     position: absolute;
     top: 30px;
-    left: -21%;
+    left: -59px;
     height: 55px;
     width: 60px;
     background-color: var(--navbar);
@@ -725,7 +725,7 @@ ul>li:not(:last-child) {
     }
 
     nav {
-        width: 250px;
+        width: min(300px, max(250px, 100dvw - 150px));
     }
 }
 

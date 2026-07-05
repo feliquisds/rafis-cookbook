@@ -5,7 +5,6 @@
     --navbar: #ffd695;
     --navbar-button: #faedca;
     --navbar-button-hover: #fef8e7;
-    --navbar-button-open: #ffedcf;
     --navbar-button-focus: #ffde84;
     --navbar-button-selected: #ffded3;
     --highlight: #e7866a;
@@ -13,6 +12,7 @@
     --print: #5b9129;
     --print-hover: #4d7825;
     --print-focus: #2d5803;
+    --print-text: #fff;
     --checked: #bd9584;
     --search: #bda884;
     --link: #cb344d;
@@ -24,23 +24,23 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background: #000;
-        --text: #E4C8B8;
-        --header: #d4aa55;
-        --navbar: #2A0909;
-        --navbar-button: #510F0F;
-        --navbar-button-hover: #631818;
-        --navbar-button-open: #5d1313;
-        --navbar-button-focus: #820b0b;
-        --navbar-button-selected: #81232e;
-        --highlight: #47572F;
-        --chip: #62482b;
-        --print: #5b9129;
+        --background: #140D0D;
+        --text: #F8E2B9;
+        --header: #BFA266;
+        --navbar: #0D0204;
+        --navbar-button: #4D3423;
+        --navbar-button-hover: #8b4d23;
+        --navbar-button-focus: #441f04;
+        --navbar-button-selected: #6e4c35;
+        --highlight: #657761;
+        --chip: #62502B;
+        --print: #71AF38;
         --print-hover: #4d7825;
         --print-focus: #2d5803;
-        --checked: #c36c62;
-        --search: #ae7777;
-        --link: #e45b72;
+        --print-text: #000;
+        --checked: #c0876a;
+        --search: #A9844F;
+        --link: #73F087;
         --easy-difficulty: #20c04e;
         --medium-difficulty: #ee9522;
         --hard-difficulty: #ef4343;
@@ -469,7 +469,7 @@ nav>div>*:only-child {
 }
 
 .print>* {
-    color: white;
+    color: var(--print-text);
 }
 
 .print:hover {
@@ -511,7 +511,8 @@ nav>div>*:only-child {
     accent-color: var(--highlight);
 }
 
-#ingredients>div>label>input:checked+p {
+#ingredients>div>label>input:checked+*,
+#ingredients>div>label>input:checked+*>* {
     color: var(--checked);
     text-decoration: line-through;
 }

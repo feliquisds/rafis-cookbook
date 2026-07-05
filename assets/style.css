@@ -563,8 +563,7 @@ search {
     text-align: center;
 }
 
-search:has(#searchbox:focus),
-search:has(#results:hover) {
+search:focus-within {
     grid-template-rows: minmax(2.75rem, max-content) 1fr;
 }
 
@@ -801,4 +800,36 @@ ul>li:not(:last-child) {
         width: 96px;
         height: 96px;
     }
+}
+
+
+
+/* touch hovers */
+html[data-pointer-mode="touch"] :is(
+    #sidebar_toggle>div,
+    .dropdown>label,
+    .dropdown>div>button,
+    nav>div>button,
+    .search_result
+):hover {
+    background-color: var(--navbar-button);
+}
+
+html[data-pointer-mode="touch"] :is(
+    #sidebar_toggle>div,
+    .dropdown>label,
+    .dropdown>div>button,
+    nav>div>button,
+    .search_result
+).touch-active {
+    background-color: var(--navbar-button-focus);
+    transform: scale(98%);
+}
+
+html[data-pointer-mode="touch"] .print.touch-active {
+    background-color: var(--print-focus);
+}
+
+html[data-pointer-mode="touch"] .print:hover {
+    background-color: var(--print);
 }

@@ -1,4 +1,8 @@
 const overrides = ['Guia', 'Extra', 'Coquetéis']
+const touchActiveSelector = '#sidebar_toggle > div, .dropdown > label, .dropdown > div > button, nav > div > button, .search_result'
+
+installTouchPressState(touchActiveSelector)
+
 function searchableString(str) {
     str = str.toLowerCase();
     if (str.search(/[\xC0-\xFF]/g) > -1) {
@@ -164,7 +168,8 @@ function backToHome() {
     window.history.pushState(null, "", "/");
     currentRecipe = ""
     updatePage()
-    deselectOption(top.document.querySelector(".selected").id)
+    let selected = top.document.querySelector(".selected")
+    if (selected != null) deselectOption(selected.id)
 }
 
 let currentRecipe = decodeURI(window.location.search).substr(1);

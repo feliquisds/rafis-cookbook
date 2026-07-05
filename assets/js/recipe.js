@@ -1,5 +1,23 @@
 import { marked } from "./marked.esm.js"
 
+window.installTouchPressState?.('.print')
+
+const printButton = document.querySelector(".print")
+if (printButton != null) {
+    const printRecipe = (event) => {
+        event.currentTarget.blur()
+        window.print()
+    }
+
+    printButton.addEventListener("pointerup", printRecipe)
+    printButton.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault()
+            printRecipe(event)
+        }
+    })
+}
+
 fetch(`/data/${decodeURI(top.window.location.search.substr(1))}.json`)
     .then(res => res.json())
     .then(json => {

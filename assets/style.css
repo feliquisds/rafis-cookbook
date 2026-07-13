@@ -19,7 +19,7 @@
     --easy-difficulty: #129c39;
     --medium-difficulty: #d57900;
     --hard-difficulty: #b70606;
-    --spine: url("./img/spine_light.png");
+    --spine: url("./img/spine.png");
 }
 
 @media (prefers-color-scheme: dark) {
@@ -44,7 +44,6 @@
         --easy-difficulty: #20c04e;
         --medium-difficulty: #ee9522;
         --hard-difficulty: #ef4343;
-        --spine: url("./img/spine_dark.png");
     }
 }
 
